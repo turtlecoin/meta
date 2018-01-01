@@ -1,5 +1,4 @@
-
-![banner](https://user-images.githubusercontent.com/34389545/34465365-9a564704-ee6e-11e7-8487-c6e0331bd247.gif)
+![button_turtlecoin-meta-discussion](https://user-images.githubusercontent.com/34389545/34465376-7f4be8c8-ee6f-11e7-8c88-e6fad1397736.gif)
 
 [![button_all](https://user-images.githubusercontent.com/34389545/34465333-610a563a-ee6d-11e7-940e-8e4cc49ebb5e.gif)](https://github.com/turtlecoin/meta/issues) [![button_announcement](https://user-images.githubusercontent.com/34389545/34465297-d39940e6-ee6b-11e7-8cd8-5732607b4723.gif)](https://github.com/turtlecoin/meta/labels/ANNOUNCEMENT)
 [![button_general](https://user-images.githubusercontent.com/34389545/34465298-d3adbb48-ee6b-11e7-9bf1-77fd8a7ef62c.gif)](https://github.com/turtlecoin/meta/labels/GENERAL)
