@@ -7,3 +7,7 @@ This area serves as a place to voice proposals, suggestions, and collaborate wit
 ### code of conduct
 
 Don't be a jerk. 
+
+### how to post
+
+Click '[Issues](https://github.com/turtlecoin/meta/issues)' and post an issue, then tag it with the relevant category tags.
