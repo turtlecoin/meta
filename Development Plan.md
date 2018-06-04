@@ -6,7 +6,7 @@
 
 Architect, design, and implement a stable, scalable, and efficient network daemon from the ground up to mitigate the shortcomings in the current daemon that have been inherited from the original ByteCoin code. The next iteration of the daemon must be designed as a service to be run 24/7/365 if the user so chooses.
 
-## Daemon Responsibilites
+## Daemon Responsibilities
 
 * Maintain the blockchain
     * Request(Pull)/Accept blocks from peers
@@ -25,7 +25,7 @@ Architect, design, and implement a stable, scalable, and efficient network daemo
         - instead of all peers linking to each other exclusively spread out
         - 1/3 peer nodes the same, 2/3 peers connected unique (goal rather than mandatory)
     * Option for priority peers (service operators able to assemble directly connected nodes)
-        - helps ensure resilance/durability for service operator
+        - helps ensure resilience/durability for service operator
 * Maintain transaction mempool
     * Validate new transactions
     * Share (Push) transactions to peers
@@ -35,7 +35,7 @@ Architect, design, and implement a stable, scalable, and efficient network daemo
 ## Current Issues
 
 * ***Daemon is wrapped in a giant try/catch block***
-* Fails to sync or loses sync sporadiacly
+* Fails to sync or loses sync sporadically
 * Core services do not recover from exceptions gracefully (abort, dumps, etc)
 * Client services (RPC) are not designed to handle more than a few connections safely.
 * Daemon forks (not as often as it once did) and continues down an alternate chain until resynced.
@@ -60,7 +60,7 @@ Architect, design, and implement a stable, scalable, and efficient network daemo
     * Meaningful Log Levels
     * Descriptive error messages including a standard set of error codes
     * Better edge case handling
-    * Bug reports that are auto-generated to simplfy error reporting
+    * Bug reports that are auto-generated to simplify error reporting
 * UML Style Documentation of Software Components & Services
 * Meaningful Namespace creation and utilization
 * Ability to STONITH peer nodes that are not updated
