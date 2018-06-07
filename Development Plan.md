@@ -335,7 +335,7 @@ All data supplied below is an **example** of the data provided or required for c
   "testnet": false,
   "tx_count": 420165,
   "tx_pool_size": 0,
-  "upgrade_height": 500000,
+  "upgrade_height": 600000,
   "version": "0.5.0",
   "white_peerlist_size": 1000
 }
