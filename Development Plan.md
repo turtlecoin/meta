@@ -325,12 +325,17 @@ All data supplied below is an **example** of the data provided or required for c
   "height": 455234,
   "incoming_connections_count": 16,
   "last_known_block_index": 455231,
+  "major_version": 4,
+  "minor_version": 0,
   "network_height": 455234,
   "outgoing_connections_count": 8,
+  "start_time": 1526385600,
   "status": "OK",
   "synced": true,
+  "testnet": false,
   "tx_count": 420165,
   "tx_pool_size": 0,
+  "upgrade_height": 500000,
   "version": "0.5.0",
   "white_peerlist_size": 1000
 }
