@@ -27,3 +27,4 @@ Daemon able to sync without external checkpoints|Launch TurtleCoind|The TurtleCo
 Daemon able to sync from 0 with external checkpoints|Launch TurtleCoind using the instruction for checkpoints import : https://github.com/turtlecoin/checkpoints|Confirm you see displayed in the console the Expected Output section of this page|You don't have an existing TurtleCoin DB
 ||Wait for the entire process to complete|Once the import of checkpoints is completed, Turtlecoind should start sycing the block after the last checkpoint in the csv.
 ||Wait for TurtleCoind to get fully synced with the network|TurtleCoind should be able to sync fully from 0% to 100%
+Daemon able to sync from 0 without external checkpoints|Launch TurtleCoind|The TurtleCoin Startup text is displayed : Welcome to TurtleCoin v0.x.x.xxxx|You don't have an existing TurtleCoin DB
