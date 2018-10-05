@@ -1,7 +1,7 @@
 # Functional tests to be done on windows, mac and linux before merging to master and deploying a release.
 
-Actions | Expected Results | Prerequisites
----|---
+Actions | Expected Results | Prerequisites |
+---|---|---
 Open wallet by clicking on the "Open" button | busy indicator for a few seconds then wallet opens and display balance, etc..., sync is ok
 Open wallet by typing return key while in password field | busy indicator for a few seconds then wallet opens and display balance, etc..., sync is ok
 Click on button to backup keys with old wallet | backup private keys are displayed (check the window is large enough)
