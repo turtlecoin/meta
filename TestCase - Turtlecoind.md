@@ -2,17 +2,17 @@
 
 Test Tile|Actions | Expected Results | Prerequisites |
 ----|---|---|---
-Daemon connects to local DB | Launch TurtleCoind | The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx | 
+Daemon connects to local DB | Launch TurtleCoind | The TurtleCoin Startup text is displayed : Welcome to TurtleCoin v0.x.x.xxxx | 
 ||Confirm the following message within the console | Loaded X default checkpoints|
 |||Opening DB in DatabasePath |
 |||DB opened in DatabasePath |
-Local DB does not require resync|Launch TurtleCoind|The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx|You already have a TurtleCoin DB
+Local DB does not require resync|Launch TurtleCoind|The TurtleCoin Startup text is displayed : Welcome to TurtleCoin v0.x.x.xxxx|You already have a TurtleCoin DB
 |||Loaded X default checkpoints|
 |||Opening DB in Existing DatabasePath|
 |||DB opened in ExistingDatabasePath|
 ||Confirm the following message within the console|TurtleCoind starts synching with the network
-Peer ID assigned|Launch TurtleCoind|The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx|the p2pstate.bin does not exist before the launch of TurtleCoind
+Peer ID assigned|Launch TurtleCoind|The TurtleCoin Startup text is displayed : Welcome to TurtleCoin v0.x.x.xxxx|the p2pstate.bin does not exist before the launch of TurtleCoind
 ||Confirm the following message within the console|Generated new peer ID: PEER_ID
 Connections to multiple peers are made|Launch TurtleCoind|The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx|
-||Within the console use the "print_cn" command|The print_cn command displays the list of connected peers using the format [OUTGOING]IP_ADDRESS:PEER_ID|
-||Within the console reuse the "print_cn" command after 30 seconds|The print_cn command displays the list of connected peers using the format [OUTGOING]IP_ADDRESS:PEER_ID  ||
+||Within the console use the "print_cn" command|The print_cn command displays the list of connected peers using the format :  [OUTGOING]IP_ADDRESS:PEER_ID|
+||Within the console reuse the "print_cn" command after 30 seconds|The print_cn command displays the list of connected peers using the format : [OUTGOING]IP_ADDRESS:PEER_ID  ||
