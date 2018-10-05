@@ -10,5 +10,6 @@ Local DB does not require resync|Launch TurtleCoind|The TurtleCoin Startup text 
 |||Loaded X default checkpoints|
 |||Opening DB in Existing DatabasePath|
 |||DB opened in ExistingDatabasePath|
-||Within the console confirm |TurtleCoind starts synching with the network
+||Confirm the following message within the console|TurtleCoind starts synching with the network
 Peer ID assigned|Launch TurtleCoind|The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx|the p2pstate.bin does not exist before the launch of TurtleCoind
+||Confirm the following message within the console|Generated new peer ID: PEER_ID
