@@ -6,3 +6,4 @@ Daemon connects to local DB | Launch TurtleCoind | The TurtleCoin Startup text i
 ||Confirm the following message within the console | Loaded X default checkpoints|
 |||Opening DB in DatabasePath |
 |||DB opened in DatabasePath |
+Local DB does not require resync|
