@@ -20,3 +20,7 @@ Daemon able to sync with external checkpoints|Launch TurtleCoind using the instr
 ||Wait for the entire process to complete|Once the import of checkpoints is completed, Turtlecoind should start sycing the block after the last checkpoint in the csv.|
 ||Wait for TurtleCoind to get fully synced with the network|TurtleCoind should be able to sync fully with the network with an existing DB
 Daemon able to sync without external checkpoints|Launch TurtleCoind|The TurtleCoin Startup text is displayed : Welcome to TurtleCoin v0.x.x.xxxx|You already have a TurtleCoin DB that is not in full sync with the network
+||Confirm the following message within the console|Loaded X default checkpoints|
+|||Opening DB in DatabasePath
+|||DB opened in DatabasePath
+||Wait for TurtleCoind to get fully synced with the network|TurtleCoind should be able to sync fully with the network with an existing DB
