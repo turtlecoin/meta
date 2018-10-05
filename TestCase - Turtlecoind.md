@@ -10,4 +10,4 @@ Local DB does not require resync|Launch TurtleCoind|The TurtleCoin Startup text 
 |||Loaded X default checkpoints|
 |||Opening DB in Existing DatabasePath|
 |||DB opened in ExistingDatabasePath|
-||Within the console|Confirm TurtleCoind starts synching with the network
+||Within the console confirm |TurtleCoind starts synching with the network
