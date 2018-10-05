@@ -32,4 +32,4 @@ Daemon able to sync from 0 without external checkpoints.|Launch TurtleCoind.|The
 ||Wait for TurtleCoind to get fully synced with the network.|TurtleCoind should be able to sync fully with the network with an existing DB.
 Daemon stays synchronized for 24 hours.|Launch TurtleCoind.|The TurtleCoin Startup text is displayed : *Welcome to TurtleCoin v0.x.x.xxxx*.
 |||The Daemon starts the syncrhonization process.|
-|Wait for 24 hours.|The Daemon is still up to date with the TurtleCoin network.
+||Wait for 24 hours.|The Daemon is still up to date with the TurtleCoin network.
