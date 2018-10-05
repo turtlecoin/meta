@@ -1,6 +1,6 @@
 # Functional tests to be done on windows, mac and linux before merging to master and deploying a release.
 
-Action | Result
+Actions | Expected Results | Prerequisites
 ---|---
 Open wallet by clicking on the "Open" button | busy indicator for a few seconds then wallet opens and display balance, etc..., sync is ok
 Open wallet by typing return key while in password field | busy indicator for a few seconds then wallet opens and display balance, etc..., sync is ok
