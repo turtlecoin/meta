@@ -8,3 +8,6 @@ Daemon connects to local DB | Launch TurtleCoind | The TurtleCoin Startup text i
 |||DB opened in DatabasePath |
 Local DB does not require resync|Launch TurtleCoind|The TurtleCoin Startup text is displayed :Welcome to TurtleCoin v0.x.x.xxxx|You already have a TurtleCoin DB
 |||Loaded X default checkpoints|
+|||Opening DB in Existing DatabasePath|
+|||DB opened in ExistingDatabasePath|
+||Within the console|Confirm TurtleCoind starts synching with the network
