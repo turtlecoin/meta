@@ -16,3 +16,5 @@ Connect to a remote daemon|Launch zedwallet using command : zedwallet.exe --remo
 Send a transaction|Within the zedWallet Console type "7", then press enter.|"What address do you want to transfer to?:" is displayed within the console.|zedWallet is already started by using local daemon or public node.+An existing wallet is already opened in zedWallet.
 ||Type a valid Turtlecoin address that you have access to (I.E. : Your TipJar address in Discord.).|"How much TRTL do you want to send?": is displayed within the console.|
 ||Enter x amount of trtl to send|
+Receive a transaction|From your tipjar or another wallet send some trtl to the address opened in the tested version of zedwallet|The transfer is sent to the wallet opened in the tested version of zedwallet|zedWallet is already started by using local daemon or public node.+An existing wallet is already opened in zedWallet.
+|test
