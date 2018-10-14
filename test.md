@@ -28,10 +28,12 @@
     <td></td>
   </tr>
   <tr>
-    <td></td>
+    <td>Send a transaction</td>
     <td>Within the zedWallet Console type "7", then press enter.</td>
     <td>"What address do you want to transfer to?:" is displayed within the console.</td>
-    <td></td>
+    <td><li>The tested version of Turtlecoind is already running.</li>
+        <li>An existing wallet is already opened in zedWallet.</li>
+    </td>
   </tr>
   <tr>
     <td></td>
