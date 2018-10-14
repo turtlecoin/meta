@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th>Test Title</th>
+    <th>Action</th>
+    <th>Expected Result</th>
+    <th>Prerequisites</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>Test1</td>
+    <td>Action1</td>
+    <td>Expected1</td>
+    <ul>
+    <td><li>Prereq1</li></td>
+    </ul>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
