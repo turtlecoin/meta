@@ -8,14 +8,22 @@
   <tr>
     <td>Connect to local daemon</td>
     <td>Launch zedwallet.</td>
-    <td>Expected1</td>
+        <td>The following is displayed within the console:
+        <li>TurtleCoin VX.X.X zedwallet</li>
+        <li>1.open</li>
+        <li>2.create</li>
+        <li>3.seed_restore</li>
+        <li>4.key_restore</li>
+        <li>5.view_wallet</li>
+        <li>6.exit</li>
+    </td>
     <ul>
     <td><li>The tested version of Turtlecoind is already running.</li></td>
     </ul>
   </tr>
   <tr>
     <td>Connect to a remote daemon</td>
-    <td>Launch zedwallet using command : </br>zedwallet.exe --remote-daemon PublicNodeUrl:PublicNodePort.</td>
+    <td>Launch zedwallet using command : </br>zedwallet.exe --remote-daemon <i>PublicNodeUrl:PublicNodePort</i>.</td>
     <td>The following is displayed within the console:
         <li>TurtleCoin VX.X.X zedwallet</li>
         <li>The public node fee is displayed if any</li>
@@ -31,7 +39,7 @@
   <tr>
     <td>Send a transaction</td>
     <td>Within the zedWallet Console type "7", then press enter.</td>
-    <td>The following is displayed within the console:</br>"What address do you want to transfer to?:"</td>
+    <td>The following is displayed within the console:</br>"<i>What address do you want to transfer to?:</i>"</td>
     <td><li>The tested version of Turtlecoind is already running.</li>
         <li>An existing wallet is already opened in zedWallet.</li>
     </td>
@@ -39,31 +47,33 @@
   <tr>
     <td></td>
     <td>Type a valid Turtlecoin address that you have access to (I.E. : Your TipJar address in Discord.), then press enter.</td>
-    <td>The following is displayed within the console:</br>"How much TRTL do you want to send?:"</td>
+    <td>The following is displayed within the console:</br>"<i>How much TRTL do you want to send?:</i>"</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter x amount of trtl to send, then press enter.</td>
-    <td>The following is displayed within the console:</br>"What fee do you want to use?"</br>"Hit enter for the default fee of 0.10      TRTL:"</td>
+    <td>The following is displayed within the console:</br><i>"What fee do you want to use?"</br>"Hit enter for the default fee of 0.10      TRTL:</i>"</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter a random fee,then press enter. Or press enter to use the default fee.</td>
-    <td>NEED TO UPDATE</td>
+    <td>The following is displayed within the console:</br>Confirm Transaction?</br>You are sending <i>X</i> TRTL, with a network fee of <i>X</i> TRTL,</br>
+        and a node fee of <i>X</i> TRTL.</br>FROM:<i>WalletName</i></br>TO:<i>TRTLAddress</i></br>
+        Is this correct? (Y/n):</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>press "y"</td>
-    <td>"Enter password" is displayed within the console</td>
+    <td>"<i>Enter password</i>" is displayed within the console</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter your wallet password, then press enter.</td>
-    <td>The following is displayed within the console:</br>Transaction has been sent</br>Hash:            0e6800b4cf4055883652be48e1d27a1248ed2514d40ed40a567b3448d0227aaf</br></td>
+    <td>The following is displayed within the console:</br>"<i>Transaction has been sent</i></br>Hash:<i>TransactionHash</i></br></td>
     <td></td>
   </tr>
   <tr>
@@ -77,7 +87,45 @@
   <tr>
     <td></td>
     <td>Within the console confirm:</td>
-    <td>New transaction found!</br>Incoming Transfer:</br>Hash:HashAmount: x TRTL</td>
+    <td><i>New transaction found!</i></br>Incoming Transfer:</br>Hash:<i>TransactionHash</i></br><i>Amount: x TRTL</i></td>
     <td></td>
+  </tr>
+  <tr>
+    <td>Perform a fusion transaction</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li>
+      <li>An existing wallet is already opened in zedWallet.</li>
+    </td>
+  </tr>
+  <tr>
+    <td>Import from keys correctly</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td>Import from seeds correctly</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td>Perform a full reset</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td>Integrated Addresses work</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td>Scan From Height Works Correctly</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
   </tr> 
 </table>
