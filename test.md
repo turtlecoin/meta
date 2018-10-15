@@ -16,7 +16,8 @@
   <tr>
     <td>Connect to a remote daemon</td>
     <td>Launch zedwallet using command : </br>zedwallet.exe --remote-daemon PublicNodeUrl:PublicNodePort.</td>
-    <td>TurtleCoin VX.X.X zedwallet is displayed within the console with the below options:
+    <td>The following is displayed within the console:
+        <li>TurtleCoin VX.X.X zedwallet is displayed</li>
         <li>The public node fee is displayed if any</li>
         <li>1.open</li>
         <li>2.create</li>
