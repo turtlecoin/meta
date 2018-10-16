@@ -38,11 +38,11 @@
   </tr>
   <tr>
     <td>Send a transaction</td>
-    <td>Within the zedWallet Console type "7", then press enter.</td>
+    <td>Within the zedwallet Console type "7", then press enter.</td>
     <td>The following is displayed within the console:</br></br>
         "<em>What address do you want to transfer to?:</em>"
        </td>
-    <td><li>The tested version of Turtlecoind is already running.</li>
+    <td><li>zedwallet is already started by using local daemon or public node.</li>
         <li>An existing wallet is already opened in zedWallet.</li>
     </td>
   </tr>
