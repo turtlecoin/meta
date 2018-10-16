@@ -8,7 +8,7 @@
   <tr>
     <td>Connect to local daemon</td>
     <td>Launch zedwallet.</td>
-        <td>The following is displayed within the console:
+        <td>The following is displayed within the console:</br></br>
         <li>TurtleCoin VX.X.X zedwallet</li>
         <li>1.open</li>
         <li>2.create</li>
@@ -23,8 +23,8 @@
   </tr>
   <tr>
     <td>Connect to a remote daemon</td>
-    <td>Launch zedwallet using command : </br>zedwallet.exe --remote-daemon <i>PublicNodeUrl:PublicNodePort</i>.</td>
-    <td>The following is displayed within the console:
+    <td>Launch zedwallet using command :</br></br>zedwallet.exe --remote-daemon <i>PublicNodeUrl:PublicNodePort</i>.</td>
+    <td>The following is displayed within the console:</br></br>
         <li>TurtleCoin VX.X.X zedwallet</li>
         <li>The public node fee is displayed if any</li>
         <li>1.open</li>
@@ -39,7 +39,7 @@
   <tr>
     <td>Send a transaction</td>
     <td>Within the zedWallet Console type "7", then press enter.</td>
-    <td>The following is displayed within the console:</br>"<i>What address do you want to transfer to?:</i>"</td>
+    <td>The following is displayed within the console:</br></br>"<i>What address do you want to transfer to?:</i>"</td>
     <td><li>The tested version of Turtlecoind is already running.</li>
         <li>An existing wallet is already opened in zedWallet.</li>
     </td>
@@ -47,21 +47,25 @@
   <tr>
     <td></td>
     <td>Type a valid Turtlecoin address that you have access to (I.E. : Your TipJar address in Discord.), then press enter.</td>
-    <td>The following is displayed within the console:</br>"<i>How much TRTL do you want to send?:</i>"</td>
+    <td>The following is displayed within the console:</br></br>"<i>How much TRTL do you want to send?:</i>"</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter x amount of trtl to send, then press enter.</td>
-    <td>The following is displayed within the console:</br><i>"What fee do you want to use?"</br>"Hit enter for the default fee of 0.10      TRTL:</i>"</td>
+    <td>The following is displayed within the console:</br></br><i>"What fee do you want to use?"</br></br>"Hit enter for the default           fee of 0.10 TRTL:</i>"</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter a random fee,then press enter. Or press enter to use the default fee.</td>
-    <td>The following is displayed within the console:</br>Confirm Transaction?</br>You are sending <i>X</i> TRTL, with a network fee of <i>X</i> TRTL,</br>
-        and a node fee of <i>X</i> TRTL.</br>FROM:<i>WalletName</i></br>TO:<i>TRTLAddress</i></br>
-        Is this correct? (Y/n):</td>
+    <td>The following is displayed within the console:</br></br>
+        <li>Confirm Transaction?</li>
+        <li>You are sending<i>X</i> TRTL, with a network fee of <i>X</i> TRTL, and a node fee of <i>X</i> TRTL.</li>
+        <li>FROM:<i>WalletName</i></li>
+        <li>TO:<i>TRTLAddress</i></li>
+        <li>Is this correct? (Y/n):</li>
+        </td>
     <td></td>
   </tr>
   <tr>
