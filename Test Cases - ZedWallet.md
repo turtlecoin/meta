@@ -278,9 +278,34 @@
   </tr>
   <tr>
     <td>Generating an Integrated Addresse work</td>
-    <td></td>
-    <td></td>
+    <td>Within the zedWallet Console type "1", then press enter.</td>
+    <td>The list of advanced features is displayed</td>
     <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Within the zedWallet Console type "13", then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>Creating an integrated address from an address and payment ID pair...</em>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Type your existing TRTL wallet address, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>Payment ID:</em>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Type a 64 character hexadecimal string, then press enter.
+      (Generate one <a href="https://www.browserling.com/tools/random-hex">here</a>)</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>NewIntergratedAddress</em>
+    </td>
+    <td></td>
   </tr>
   <tr>
     <td>Transfering to an Integrated Addresse</td>
