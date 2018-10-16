@@ -209,23 +209,69 @@
   <tr>
     <td></td>
     <td>press "y"</td>
-    <td>Resetting wallet...</br>
+    <td>The following is displayed within the console:</br></br>
+        Resetting wallet...</br>
         Scanning through the blockchain to find transactions that belong to you.</br>
         Please wait, this will take some time.</br></br>
-        1 of 880171 is displayed within the console
+        1 of 880171.
     </td>
     <td></td>
   </tr>
   <tr>
-    <td>Integrated Addresses work</td>
+    <td></td>
+    <td>Wait for the process to complete, the confirm</td>
+    <td>Your wallet should be available for use.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Generating an Integrated Addresse work</td>
+    <td></td>
+    <td></td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td>Transfering to an Integrated Addresse</td>
     <td></td>
     <td></td>
     <td><li>zedWallet is already started by using local daemon or public node.</li></td>
   </tr>
   <tr>
     <td>Scan From Height Works Correctly</td>
+    <td>within the zedwallet console, type "reset"</td>
+    <td>The following is displayed within the console:</br></br>
+      "This process may take some time to complete.</br>
+      You can't make any transactions during the process."</br></br>
+      "Are you sure? (Y/n):"
+      </td>
     <td></td>
+  </tr>
+  <tr>
     <td></td>
-    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+    <td>enter a desired scan-height, other than 0 then press "Enter".</td>
+    <td>The following is displayed within the console:</br></br>
+      "This process may take some time to complete.</br>
+      You can't make any transactions during the process."</br></br>
+      "Are you sure? (Y/n):"
+      </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>press "y".</td>
+    <td>The following is displayed within the console:</br></br>
+        Resetting wallet...</br>
+        Scanning through the blockchain to find transactions that belong to you.</br>
+        Please wait, this will take some time.</br></br>
+        1 of 880171.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Within the console, confirm:</td>
+    <td><li>You can see it's doing jumps of 10k at once untill the selected scan height value is reached</li>
+        <li>If you don't use scan height, it will instead do it in jumps of 100</li>
+      </td>
+    <td></td>
   </tr> 
 </table>
