@@ -188,7 +188,7 @@
   </tr>
   <tr>
     <td>Perform a full reset</td>
-    <td>within the zedwallet console, type "reset", then press enter.</td>
+    <td>Within the zedwallet console, type "reset", then press enter.</td>
     <td>The following is displayed within the console:</br></br>
         <em>"What height would you like to begin scanning your wallet from?</br></br>
         This can greatly speed up the initial wallet scanning process.</br></br>
@@ -198,8 +198,22 @@
   </tr>
   <tr>
     <td></td>
+    <td>Enter a desired scan-height, then press enter. Or press enter to scan from 0.</td>
+    <td>The following is displayed within the console:</br></br>
+      "This process may take some time to complete.</br>
+      You can't make any transactions during the process."</br></br>
+      "Are you sure? (Y/n):"
+    </td>
     <td></td>
-    <td>enter a desired scan-height or press enter to scan from 0</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>press "y"</td>
+    <td>Resetting wallet...</br>
+        Scanning through the blockchain to find transactions that belong to you.</br>
+        Please wait, this will take some time.</br></br>
+        1 of 880171 is displayed within the console
+    </td>
     <td></td>
   </tr>
   <tr>
