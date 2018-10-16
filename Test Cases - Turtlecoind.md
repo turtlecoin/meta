@@ -14,7 +14,7 @@
       <tr>
          <td>Daemon connects to local DB.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The following text is displayed within the console : </br>
+         <td>The following text is displayed within the console : </br></br>
             <li>Welcome to TurtleCoin <em>v0.x.x.xxxx</em></li>
             <li>Loaded X default checkpoints.</em></li>
             <li>Opening DB in <em>DatabasePath.</em></li>
@@ -27,7 +27,7 @@
       <tr>
          <td>Local DB does not require resync.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The following text is displayed within the console : </br>
+         <td>The following text is displayed within the console : </br></br>
             <li>Welcome to TurtleCoin <em>v0.x.x.xxxx</em></li>
             <li>Loaded X default checkpoints.</em></li>
             <li>Opening DB in <em>DatabasePath.</em></li>
@@ -46,7 +46,7 @@
       <tr>
          <td>Peer ID assigned.</td>
          <td>Launch TurtleCoind.</td>
-         <td>Confirm this specific text is displayed within the console : </br>
+         <td>Confirm this specific text is displayed within the console : </br></br>
             <li>Generated new peer ID: <em>PEER_ID.</em></li>
          </td>  
          <td>The p2pstate.bin does not exist before the launch of TurtleCoind.</td>
@@ -54,7 +54,7 @@
       <tr>
          <td>Connections to multiple peers are made.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed : </br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br></br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td></td>
       </tr>
          <td></td>
@@ -65,13 +65,15 @@
       <tr>
          <td></td>
          <td>Within the console use the “print_cn” command.</td>
-         <td>The print_cn command displays the list of connected peers using the format :</br><em>[OUTGOING]IP_ADDRESS:PEER_ID.</em>                  </td>
+         <td>The print_cn command displays the list of connected peers using the format :
+               </br></br><em>[OUTGOING]IP_ADDRESS:PEER_ID.</em></td>
          <td></td>
       </tr>
       <tr>
          <td></td>
          <td>Within the console reuse the “print_cn” command after 30 seconds.</td>
-         <td>The print_cn command displays the list of connected peers using the format : </br><em>[OUTGOING]IP_ADDRESS:PEER_ID</em>                  </td>
+         <td>The print_cn command displays the list of connected peers using the format :
+              </br></br><em>[OUTGOING]IP_ADDRESS:PEER_ID</em></td>
          <td></td>
       </tr>
       <tr>
@@ -95,7 +97,7 @@
       <tr>
          <td>Daemon able to sync without external checkpoints.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed : <em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br></br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td>You already have a TurtleCoin DB that is not in full sync with the network.</td>
       </tr>
       <tr>
@@ -125,7 +127,7 @@
       <tr>
          <td>Daemon able to sync from 0 without external checkpoints.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed :</br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br></br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td>You don’t have an existing TurtleCoin DB.</td>
       </tr>
       <tr>
@@ -145,7 +147,7 @@
       <tr>
          <td>Daemon stays synchronized for 24 hours.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed :</br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br></br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td></td>
       </tr>
       <tr>
