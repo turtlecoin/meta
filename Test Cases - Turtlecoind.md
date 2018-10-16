@@ -35,7 +35,7 @@
             <li>TurtleCoind starts synching with the network.</li>
             <li>Loaded X default checkpoints.</em></li>
          </td>
-         <td>You already have a TurtleCoin DB.</td>
+         <td>You already have a TurtleCoin DB that is not in full sync with the network.</td>
       </tr>
       <tr>
          <td></td>
@@ -46,8 +46,7 @@
       <tr>
          <td>Peer ID assigned.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The following text is displayed within the console : </br>
-            <li>Welcome to TurtleCoin <em>v0.x.x.xxxx</em></li>
+         <td>Confirm this specific text is displayed within the console : </br>
             <li>Generated new peer ID: <em>PEER_ID.</em></li>
          </td>  
          <td>The p2pstate.bin does not exist before the launch of TurtleCoind.</td>
@@ -55,31 +54,36 @@
       <tr>
          <td>Connections to multiple peers are made.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed : <em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed : </br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td></td>
+      </tr>
+         <td></td>
+         <td>Wait for a couple of minutes to get multiple connections to peers</td>
+         <td>Daemon continues sync process</td>
          <td></td>
       </tr>
       <tr>
          <td></td>
          <td>Within the console use the “print_cn” command.</td>
-         <td>The print_cn command displays the list of connected peers using the format :  <em>[OUTGOING]IP_ADDRESS:PEER_ID</em>.</td>
+         <td>The print_cn command displays the list of connected peers using the format :</br><em>[OUTGOING]IP_ADDRESS:PEER_ID.</em>                  </td>
          <td></td>
       </tr>
       <tr>
          <td></td>
          <td>Within the console reuse the “print_cn” command after 30 seconds.</td>
-         <td>The print_cn command displays the list of connected peers using the format : <em>[OUTGOING]IP_ADDRESS:PEER_ID</em>.</td>
+         <td>The print_cn command displays the list of connected peers using the format : </br><em>[OUTGOING]IP_ADDRESS:PEER_ID</em>                  </td>
          <td></td>
       </tr>
       <tr>
          <td>Daemon able to sync with external checkpoints.</td>
-         <td>Launch TurtleCoind using the instruction for checkpoints import : <a href="https://github.com/turtlecoin/checkpoints">https://github.com/turtlecoin/checkpoints</a></td>
-         <td>Confirm you see displayed in the console the Expected Output section of this page.</td>
+         <td>Launch TurtleCoind using the instruction for checkpoints import : <ahref="https://github.com/turtlecoin/checkpoints">https://github.com/turtlecoin/checkpoints</a></td>
+         <td>Confirm you see displayed in the console the Expected Output section of this <a href="https://github.com/turtlecoin/checkpoints">page</a></td>
          <td>You already have a TurtleCoin DB that is not in full sync with the network.</td>
       </tr>
       <tr>
          <td></td>
          <td>Wait for the entire process to complete.</td>
-         <td>Once the import of checkpoints is completed, Turtlecoind should start sycing the block after the last checkpoint in the csv.</td>
+         <td>Once the import of checkpoints is completed, Turtlecoind should start sycing the block after the last checkpoint in the                  csv.</td>
          <td></td>
       </tr>
       <tr>
@@ -96,24 +100,6 @@
       </tr>
       <tr>
          <td></td>
-         <td>Confirm the following message within the console.</td>
-         <td>Loaded X default checkpoints.</td>
-         <td></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td></td>
-         <td>Opening DB in DatabasePath.</td>
-         <td></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td></td>
-         <td>DB opened in DatabasePath.</td>
-         <td></td>
-      </tr>
-      <tr>
-         <td></td>
          <td>Wait for TurtleCoind to get fully synced with the network.</td>
          <td>TurtleCoind should be able to sync fully with the network with an existing DB.</td>
          <td></td>
@@ -121,7 +107,7 @@
       <tr>
          <td>Daemon able to sync from 0 with external checkpoints.</td>
          <td>Launch TurtleCoind using the instruction for checkpoints import : <a href="https://github.com/turtlecoin/checkpoints">https://github.com/turtlecoin/checkpoints</a></td>
-         <td>Confirm you see displayed in the console the Expected Output section of this page.</td>
+         <td>Confirm you see displayed in the console the Expected Output section of this<a                 href="https://github.com/turtlecoin/checkpoints">page</a></td>
          <td>You don’t have an existing TurtleCoin DB.</td>
       </tr>
       <tr>
@@ -139,13 +125,15 @@
       <tr>
          <td>Daemon able to sync from 0 without external checkpoints.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed : <em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td>You don’t have an existing TurtleCoin DB.</td>
       </tr>
       <tr>
          <td></td>
          <td>Confirm the following message within the console.</td>
-         <td>DB not found in <em>DATABASE_PATH</em>. Creating new DB.</td>
+         <td><li>DB not found in <em>DATABASE_PATH</em>.</li> 
+            <li>Creating new DB.</li>
+            </td>
          <td></td>
       </tr>
       <tr>
@@ -157,7 +145,7 @@
       <tr>
          <td>Daemon stays synchronized for 24 hours.</td>
          <td>Launch TurtleCoind.</td>
-         <td>The TurtleCoin Startup text is displayed : <em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
+         <td>The TurtleCoin Startup text is displayed :</br><em>Welcome to TurtleCoin v0.x.x.xxxx</em>.</td>
          <td></td>
       </tr>
       <tr>
