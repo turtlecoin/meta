@@ -73,7 +73,7 @@
   </tr>
   <tr>
     <td></td>
-    <td>press "y"</td>
+    <td>Press "y".</td>
     <td>The following is displayed within the console:</br></br>"<i>Enter password</i>"</td>
     <td></td>
   </tr>
@@ -112,7 +112,7 @@
   </tr>
   <tr>
     <td>Export keys and seeds</td>
-    <td>Within the zedWallet Console type "backup", then press enter.</td>
+    <td>Within the zedWallet console type "backup", then press enter.</td>
     <td>The following is displayed within the console:</br></br>
          <em>"Enter your password"</em></td>
     <td><li>zedWallet is already started by using local daemon or public node.</li>
@@ -196,7 +196,7 @@
     <td>Perform a full reset</td>
     <td>Within the zedwallet console, type "reset", then press enter.</td>
     <td>The following is displayed within the console:</br></br>
-        <em>"What height would you like to begin scanning your wallet from?</br></br>
+        <em>What height would you like to begin scanning your wallet from?</br></br>
         This can greatly speed up the initial wallet scanning process.</br></br>
         If you do not know the exact height, err on the side of caution so transactions do not get missed.</br></br>
         Hit enter for the sub-optimal default of zero:"</em></td>
@@ -205,21 +205,21 @@
   <tr>
     <td></td>
     <td>Enter a desired scan-height, then press enter. Or press enter to scan from 0.</td>
-    <td>The following is displayed within the console:</br></br>
-      "This process may take some time to complete.</br>
-      You can't make any transactions during the process."</br></br>
-      "Are you sure? (Y/n):"
+    <td><em>The following is displayed within the console:</br></br>
+      This process may take some time to complete.</br>
+      You can't make any transactions during the process.</br></br>
+      "Are you sure? (Y/n):</em>"
     </td>
     <td></td>
   </tr>
   <tr>
     <td></td>
-    <td>press "y"</td>
+    <td>Press "y".</td>
     <td>The following is displayed within the console:</br></br>
-        Resetting wallet...</br>
+        <em>Resetting wallet...</br>
         Scanning through the blockchain to find transactions that belong to you.</br>
         Please wait, this will take some time.</br></br>
-        1 of 880171.
+        1 of 880171.</em>
     </td>
     <td></td>
   </tr>
@@ -243,32 +243,32 @@
   </tr>
   <tr>
     <td>Scan From Height Works Correctly</td>
-    <td>within the zedwallet console, type "reset"</td>
+    <td>Within the zedwallet console, type "reset".</td>
     <td>The following is displayed within the console:</br></br>
-      "This process may take some time to complete.</br>
-      You can't make any transactions during the process."</br></br>
-      "Are you sure? (Y/n):"
+      "<em>This process may take some time to complete.</em></br>
+      <em>You can't make any transactions during the process.</em>"</br></br>
+      "<em>Are you sure? (Y/n):</em>"
       </td>
     <td></td>
   </tr>
   <tr>
     <td></td>
-    <td>enter a desired scan-height, other than 0 then press "Enter".</td>
+    <td>Enter a desired scan-height, other than 0 then press "Enter".</td>
     <td>The following is displayed within the console:</br></br>
-      "This process may take some time to complete.</br>
-      You can't make any transactions during the process."</br></br>
-      "Are you sure? (Y/n):"
+      <em>"This process may take some time to complete.</br>
+      You can't make any transactions during the process."</em></br></br>
+      <em>"Are you sure? (Y/n):</em>"
       </td>
     <td></td>
   </tr>
   <tr>
     <td></td>
-    <td>press "y".</td>
+    <td>Press "y".</td>
     <td>The following is displayed within the console:</br></br>
-        Resetting wallet...</br>
-        Scanning through the blockchain to find transactions that belong to you.</br>
-        Please wait, this will take some time.</br></br>
-        1 of 880171.
+        <em>Resetting wallet...</em></br>
+        <em>Scanning through the blockchain to find transactions that belong to you.</em></br>
+        <em>Please wait, this will take some time.</em></br></br>
+        <em>1 of 880171.</em>
     </td>
     <td></td>
   </tr>
