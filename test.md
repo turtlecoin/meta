@@ -111,6 +111,26 @@
     </td>
   </tr>
   <tr>
+    <td>Export keys and seeds</td>
+    <td>Within the zedWallet Console type "backup", then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+         <em>"Enter your password"</em>
+         </td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li>
+      <li>An existing wallet is already opened in zedWallet.</li></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter your wallet password, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+    <li>"Private spend key:"<em>PrivateKeyValue</em></li>
+    <li>"Private view key:"<em>PrivateViewKeyValue</em></li>
+    <li>"Mnemonic seed:"<em>MnemonicSeedValue</em></li> 
+      </td>
+    <td><li>zedWallet is already started by using local daemon or public node.</li>
+      <li>An existing wallet is already opened in zedWallet.</li></td>
+  </tr>
+  <tr>
     <td>Import from keys correctly</td>
     <td></td>
     <td></td>
