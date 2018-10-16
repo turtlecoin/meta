@@ -113,11 +113,44 @@
   </tr>
   <tr>
     <td>Perform a fusion transaction</td>
-    <td></td>
-    <td></td>
+    <td>Within the zedWallet console type "optimize", then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+         <em>Attempting to optimize your wallet to allow you to send large amounts at once.</br>
+          This may take a very long time!</br>
+          Do you want to proceed? (Y/n):</em>
+     </td>
     <td><li>zedWallet is already started by using local daemon or public node.</li>
       <li>An existing wallet is already opened in zedWallet.</li>
+      <li>You wallet is in need of an optimization (more to come)</li>
     </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Press "y", then enter.</td>
+    <td>The following is displayed within the console:</br></br>
+         <em>Running optimization round X</br>
+          Created X fusion transaction(s)!(This can occur X number of time)</br>
+          X fusion transactions have been sent, waiting for the balance to return and unlock.</em>
+     </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Within the console confirm the following messages(Output can vary.):</td>
+    <td><em>Balance is still locked, X fusion transactions sill to be confirmed.</em>(This can occur X number of time)</be>
+         <em>Will try again in 15 seconds...</em>(This can occur X number of time)</br>
+         <em>All fusion transactions confirmed!</em>
+     </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Within the console confirm the following expected output(Output can vary.):</td>
+    <td>Two possible case :</br></br>
+        <li>Another round of optimization</li>
+        <li>Full optimization completed message displayed within the console</li>
+        </td>
+    <td></td>
   </tr>
   <tr>
     <td>Export keys and seeds</td>
