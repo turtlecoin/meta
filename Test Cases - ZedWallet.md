@@ -39,23 +39,28 @@
   <tr>
     <td>Send a transaction</td>
     <td>Within the zedWallet Console type "7", then press enter.</td>
-    <td>The following is displayed within the console:</br></br>"<i>What address do you want to transfer to?:</i>"</td>
+    <td>The following is displayed within the console:</br></br>
+        "<em>What address do you want to transfer to?:</em>"
+       </td>
     <td><li>The tested version of Turtlecoind is already running.</li>
         <li>An existing wallet is already opened in zedWallet.</li>
     </td>
   </tr>
   <tr>
     <td></td>
-    <td>Type a valid Turtlecoin address that you have access to (I.E. : Your TipJar address in Discord.), then press enter.</td>
-    <td>The following is displayed within the console:</br></br>"<i>How much TRTL do you want to send?:</i>"</td>
+    <td>Type a valid Turtlecoin address that you have access to that is not an integrated address (I.E.:
+      <a href="https://turtlewallet.lol">turtlewallet.lol</a> or another zedwallet address), then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+      "<em>How much TRTL do you want to send?:</em>"
+      </td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter x amount of trtl to send, then press enter.</td>
     <td>The following is displayed within the console:</br></br>
-        <li><i>"What fee do you want to use?"</li>
-        <li>"Hit enter for the default fee of 0.10 TRTL:</i>"</li>
+        <li>"<em>What fee do you want to use?"</li>
+        <li>"Hit enter for the default fee of 0.10 TRTL:</em>"</li>
     </td>
     <td></td>
   </tr>
@@ -74,13 +79,17 @@
   <tr>
     <td></td>
     <td>Press "y".</td>
-    <td>The following is displayed within the console:</br></br>"<i>Enter password</i>"</td>
+    <td>The following is displayed within the console:</br></br>
+    "<em>Enter password</em>"
+      </td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter your wallet password, then press enter.</td>
-    <td>The following is displayed within the console:</br></br>"<i>Transaction has been sent</i></br>Hash:<i>TransactionHash</i></br></td>
+    <td>The following is displayed within the console:</br></br>
+      "<em>Transaction has been sent"</em></br>
+        Hash:<i>TransactionHash</i></td>
     <td></td>
   </tr>
   <tr>
@@ -292,7 +301,7 @@
   </tr>
   <tr>
     <td></td>
-    <td>Type your existing TRTL wallet address, then press enter.</td>
+    <td>Type one of your existing TRTL wallet address (Other than the one currently opened), then press enter.</td>
     <td>The following is displayed within the console:</br></br>
         <em>Payment ID:</em>
     </td>
@@ -309,9 +318,56 @@
   </tr>
   <tr>
     <td>Transfering to an Integrated Addresse</td>
+    <td>Within the zedWallet Console type "7", then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        "<em>What address do you want to transfer to?:</em>"</td>
+    <td><li>The tested version of Turtlecoind is already running.</li>
+        <li>An existing wallet is already opened in zedWallet.</li>
+    </td>
+  </tr>
+  <tr>
     <td></td>
+    <td>Type the integrated address that you have created in the above test, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        "<em>How much TRTL do you want to send?:</em>"</td>
     <td></td>
-    <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter x amount of trtl to send, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <li>"<em>What fee do you want to use?</em>"</li>
+        <li>"Hit enter for the default fee of 0.10 TRTL:</i>"</li>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter a random fee,then press enter. Or press enter to use the default fee.</td>
+    <td>The following is displayed within the console:</br></br>
+        <li>Confirm Transaction?</li>
+        <li>You are sending <i>X</i> TRTL, with a network fee of <i>X</i> TRTL, and a node fee of <i>X</i> TRTL.</li>
+        <li>FROM:<i>WalletName</i></li>
+        <li>TO:<i>TRTLAddress</i></li>
+        <li>Is this correct? (Y/n):</li>
+        </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Press "y".</td>
+    <td>The following is displayed within the console:</br></br>"<i>Enter password</i>"</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter your wallet password, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>"<i>Transaction has been sent</i></br>Hash:<i>TransactionHash</i></br>     </td>
+   <tr>
+    <td></td>
+    <td>Open the wallet that is associated with the address you sent the transaction to.</td>
+    <td>Confirm the transaction has been received via the integrated address.</td>
+    <td></td>
   </tr>
   <tr>
     <td>Scan From Height Works Correctly</td>
