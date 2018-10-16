@@ -53,7 +53,10 @@
   <tr>
     <td></td>
     <td>Enter x amount of trtl to send, then press enter.</td>
-    <td>The following is displayed within the console:</br></br><i>"What fee do you want to use?"</br></br>"Hit enter for the default           fee of 0.10 TRTL:</i>"</td>
+    <td>The following is displayed within the console:</br></br>
+        <li><i>"What fee do you want to use?"</li>
+        <li>"Hit enter for the default fee of 0.10 TRTL:</i>"</li>
+    </td>
     <td></td>
   </tr>
   <tr>
@@ -61,7 +64,7 @@
     <td>Enter a random fee,then press enter. Or press enter to use the default fee.</td>
     <td>The following is displayed within the console:</br></br>
         <li>Confirm Transaction?</li>
-        <li>You are sending<i>X</i> TRTL, with a network fee of <i>X</i> TRTL, and a node fee of <i>X</i> TRTL.</li>
+        <li>You are sending <i>X</i> TRTL, with a network fee of <i>X</i> TRTL, and a node fee of <i>X</i> TRTL.</li>
         <li>FROM:<i>WalletName</i></li>
         <li>TO:<i>TRTLAddress</i></li>
         <li>Is this correct? (Y/n):</li>
@@ -71,13 +74,13 @@
   <tr>
     <td></td>
     <td>press "y"</td>
-    <td>"<i>Enter password</i>" is displayed within the console</td>
+    <td>The following is displayed within the console:</br></br>"<i>Enter password</i>"</td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>Enter your wallet password, then press enter.</td>
-    <td>The following is displayed within the console:</br>"<i>Transaction has been sent</i></br>Hash:<i>TransactionHash</i></br></td>
+    <td>The following is displayed within the console:</br></br>"<i>Transaction has been sent</i></br>Hash:<i>TransactionHash</i></br></td>
     <td></td>
   </tr>
   <tr>
@@ -90,8 +93,13 @@
   </tr>
   <tr>
     <td></td>
-    <td>Within the console confirm:</td>
-    <td><i>New transaction found!</i></br>Incoming Transfer:</br>Hash:<i>TransactionHash</i></br><i>Amount: x TRTL</i></td>
+    <td>The following is displayed within the console:</td></br>
+    <td>
+      <li><i>New transaction found!</i></li>
+      <li>Incoming Transfer:</li>
+      <li>Hash:<i>TransactionHash</i></li>
+      <li><i>Amount: x TRTL</i></li>
+    </td>
     <td></td>
   </tr>
   <tr>
