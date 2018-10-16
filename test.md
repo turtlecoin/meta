@@ -225,8 +225,8 @@
   </tr>
   <tr>
     <td></td>
-    <td>Wait for the process to complete, the confirm</td>
-    <td>Your wallet should be available for use.</td>
+    <td>Wait for the process to complete, then confirm</td>
+    <td>Your wallet should fully usable.</td>
     <td></td>
   </tr>
   <tr>
