@@ -175,16 +175,32 @@
     <td></td>
   </tr>
   <tr>
+    <td></td>
+    <td>Enter a valid scan-height value, then press enter.</td>
+    <td>Update ME!</td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Import from seeds correctly</td>
-    <td></td>
-    <td></td>
+    <td>Within the zedWallet Console, Select Option 3: "seed_restore".</td>
+    <td>UPDATE ME</td>
     <td><li>zedWallet is already started by using local daemon or public node.</li></td>
   </tr>
   <tr>
     <td>Perform a full reset</td>
-    <td></td>
-    <td></td>
+    <td>within the zedwallet console, type "reset", then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"What height would you like to begin scanning your wallet from?</br></br>
+        This can greatly speed up the initial wallet scanning process.</br></br>
+        If you do not know the exact height, err on the side of caution so transactions do not get missed.</br></br>
+        Hit enter for the sub-optimal default of zero:"</em></td>
     <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>enter a desired scan-height or press enter to scan from 0</td>
+    <td></td>
   </tr>
   <tr>
     <td>Integrated Addresses work</td>
