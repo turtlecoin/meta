@@ -177,7 +177,13 @@
   <tr>
     <td></td>
     <td>Enter a valid scan-height value, then press enter.</td>
-    <td>Update ME!</td>
+    <td>Zedwallet scans the blockchain from the selected scan-height value</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Once the process is complete, confirm</td>
+    <td>The wallet is now fully usable.</td>
     <td></td>
   </tr>
   <tr>
