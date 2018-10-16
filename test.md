@@ -114,8 +114,7 @@
     <td>Export keys and seeds</td>
     <td>Within the zedWallet Console type "backup", then press enter.</td>
     <td>The following is displayed within the console:</br></br>
-         <em>"Enter your password"</em>
-         </td>
+         <em>"Enter your password"</em></td>
     <td><li>zedWallet is already started by using local daemon or public node.</li>
       <li>An existing wallet is already opened in zedWallet.</li></td>
   </tr>
@@ -123,18 +122,57 @@
     <td></td>
     <td>Enter your wallet password, then press enter.</td>
     <td>The following is displayed within the console:</br></br>
-    <li>"Private spend key:"<em>PrivateKeyValue</em></li>
-    <li>"Private view key:"<em>PrivateViewKeyValue</em></li>
-    <li>"Mnemonic seed:"<em>MnemonicSeedValue</em></li> 
+      <li>"Private spend key:"<em>PrivateKeyValue</em></li>
+      <li>"Private view key:"<em>PrivateViewKeyValue</em></li>
+      <li>"Mnemonic seed:"<em>MnemonicSeedValue</em></li> 
       </td>
     <td><li>zedWallet is already started by using local daemon or public node.</li>
       <li>An existing wallet is already opened in zedWallet.</li></td>
   </tr>
   <tr>
     <td>Import from keys correctly</td>
-    <td></td>
-    <td></td>
+    <td>Within the zedWallet Console, Select Option 4: "key_restore".</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"Enter your private spend key:"</em></td>
     <td><li>zedWallet is already started by using local daemon or public node.</li></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter a valid private spend key, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"Enter your private view key:"</em></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter a valid private view key, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"What would you like to call your new wallet?:"</em></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter a new wallet name, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"Give your new wallet a password:"</em></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter a new password, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"Confirm your new password:"</em></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Enter the new password confirmation, then press enter.</td>
+    <td>The following is displayed within the console:</br></br>
+        <em>"What height would you like to begin scanning your wallet from?</br></br>
+        This can greatly speed up the initial wallet scanning process.</br></br>
+        If you do not know the exact height, err on the side of caution so transactions do not get missed.</br></br>
+        Hit enter for the sub-optimal default of zero:"</em></td>
+    <td></td>
   </tr>
   <tr>
     <td>Import from seeds correctly</td>
