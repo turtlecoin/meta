@@ -1,6 +1,3 @@
-# Turtlecoind
-# Functional tests to be done on windows, mac and linux before merging to master and deploying a release.
-
 <table class="table table-striped table-bordered">
    <thead>
       <tr>
