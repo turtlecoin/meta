@@ -1,0 +1,56 @@
+### TurtleCoind Tests
+
+- [ ] Daemon connects to local DB
+- [ ] Local DB does not require resync
+- [ ] Peer ID assigned
+- [ ] Connections to multiple peers are made
+- [ ] Daemon able to sync with external checkpoints
+- [ ] Daemon able to sync without external checkpoints
+- [ ] Daemon able to sync from 0 with external checkpoints
+- [ ] Daemon able to sync from 0 without external checkpoints
+- [ ] Daemon stays synchronised for 24 hours
+- [ ] CLI Options Tested
+- [ ] Config File Options Tested
+
+### ZedWallet Tests
+
+- [ ] Connect to local daemon
+- [ ] Connect to a remote daemon
+- [ ] Send a transaction
+- [ ] Receive a transaction
+- [ ] Perform a fusion transaction
+- [ ] Export keys and seeds
+- [ ] Import from keys and seeds correctly
+- [ ] Perform a full reset
+- [ ] Integrated Addresses work
+- [ ] Scan From Height Works Correctly
+- [ ] CLI Options Tested
+
+### Turtle-Service Tests
+
+- [ ] Connect to local daemon
+- [ ] Connect to a remote daemon
+- [ ] Send a transaction
+- [ ] Receive a transaction
+- [ ] Perform a fusion transaction
+- [ ] Export keys and seeds
+- [ ] Import from keys and seeds correctly
+- [ ] Perform a full reset
+- [ ] Integrated Addresses work
+- [ ] All RPC endpoints and methods are operational
+- [ ] Scan From Height Works Correctly
+- [ ] CLI Options Tested
+- [ ] Config File Options Tested
+
+### GUI Wallet Tests
+
+- [ ] Connect to local daemon
+- [ ] Connect to a remote daemon
+- [ ] Send a transaction
+- [ ] Receive a transaction
+- [ ] Perform a fusion transaction
+- [ ] Export keys and seeds
+- [ ] Import from keys and seeds correctly
+- [ ] Perform a full reset
+- [ ] Integrated Addresses work
+- [ ] Scan From Height Works Correctly
