@@ -109,6 +109,10 @@ paths:
                     type: string
                     description: An informative error message if available
                     example: Wrong block blob
+                  errorCode:
+                    type: integer
+                    description: The error code if available
+                    example: 104
 
   /block/count:
     get:
@@ -389,7 +393,7 @@ paths:
               description: The hexadecimal (blob) representation of the transaction to send to the network
               example: 010001026404d48008fff717d2872294b71e51b8304ed711c0fe240a2614610cc0380a5d0b8b13e2652e6c062fbb056b7f1f015a027b2288942d52247932af36dc1d722da61f296089015b83d591f5a71afafa948021015af0c037fcfe8c50f1e11876c98338fe664c85bc11cd696bc04c988b5669deda96a4299dd9cb471795d079da82e25827badcd79400b394e7c51b67c662d0fc03204a3967aa2bc90708c97cc0370597ad9e154dc7d418ab71b981f8bb805cc603bde2fcb1025bb8b7a04e5e5168cebd724c920fcbb3399210543db9cf7ef9440fa0f11f5a2ea908da1f60f359ab2af2f79783b2111362260fc8d562b268dd350dcb07941d179f34cfd43a3b8d689db6ff453fce4e987a537a528a80f011217e0460434e52da411e8760b10c34a3b63236eb966273a26a3ad3fc7a863a3b6bc508b16cc7763b28743f4ba5a9711e95eeb95762aa6e9c79725170d42fc8968dcd051d2eef49e1726db2fd92e76c47455efff52fc0b473899acaff169316f9654802
       responses:
-        '503':
+        '500':
           description: Internal server error
         '201':
           description: Transaction accepted and relayed to the network
@@ -404,6 +408,10 @@ paths:
                     type: string
                     description: An informative error message is available
                     example: Transaction contains an input which has already been spent
+                  errorCode:
+                    type: integer
+                    description: The error code if available
+                    example: 104
 
   /transaction/{hash}:
     get:

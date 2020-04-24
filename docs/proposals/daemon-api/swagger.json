@@ -162,6 +162,11 @@
                       "type": "string",
                       "description": "An informative error message if available",
                       "example": "Wrong block blob"
+                    },
+                    "errorCode": {
+                      "type": "integer",
+                      "description": "The error code if available",
+                      "example": 104
                     }
                   }
                 }
@@ -607,13 +612,18 @@
                       "type": "string",
                       "description": "An informative error message is available",
                       "example": "Transaction contains an input which has already been spent"
+                    },
+                    "errorCode": {
+                      "type": "integer",
+                      "description": "The error code if available",
+                      "example": 104
                     }
                   }
                 }
               }
             }
           },
-          "503": {
+          "500": {
             "description": "Internal server error"
           }
         }
