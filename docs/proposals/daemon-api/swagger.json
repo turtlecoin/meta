@@ -810,12 +810,12 @@
                     "description": "An array of transaction hashes that we believe to be in the transaction memory pool",
                     "items": {
                       "type": "string",
-                      "description": "The transaction hash",
-                      "example": [
-                        "bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0",
-                        "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
-                      ]
-                    }
+                      "description": "The transaction hash"
+                    },
+                    "example": [
+                      "bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0",
+                      "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
+                    ]
                   }
                 }
               }
