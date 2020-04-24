@@ -1,0 +1,2334 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This document describes the TurtleCoin daemon API methods for interacting with it using HTTP requests.",
+    "version": "1.0.0",
+    "title": "TurtleCoind API Interface",
+    "contact": {
+      "name": "Help via Discord Chat",
+      "url": "http://chat.turtlecoin.lol"
+    },
+    "license": {
+      "name": "GNU Affero General Public License version 3",
+      "url": "https://opensource.org/licenses/AGPL-3.0"
+    }
+  },
+  "tags": [
+    {
+      "name": "Node Information"
+    },
+    {
+      "name": "Blocks"
+    },
+    {
+      "name": "Transactions"
+    },
+    {
+      "name": "Syncronization"
+    }
+  ],
+  "externalDocs": {
+    "description": "The TurtleCoin GitHub Organization",
+    "url": "https://github.com/TurtleCoin"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:11898"
+    }
+  ],
+  "paths": {
+    "/info": {
+      "get": {
+        "summary": "Retrieves information regarding the current status of the node",
+        "tags": [
+          "Node Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Info"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/height": {
+      "get": {
+        "summary": "Retrieves current information regarding the blockchain height",
+        "tags": [
+          "Node Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Height"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/fee": {
+      "get": {
+        "summary": "Retrieves information regarding the node's fee for sending transactions via this interface",
+        "tags": [
+          "Node Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fee"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/peers": {
+      "get": {
+        "summary": "Retrieves current information regarding the peerlist of the node",
+        "tags": [
+          "Node Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Peers"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block": {
+      "put": {
+        "summary": "Attempts to add a new block to the blockchain",
+        "tags": [
+          "Blocks"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "description": "The hexadecimal (blob) representation of the block to add to the blockchain",
+                "example": "0400850d6b0dcd9aee8adc27ddf2c0102cc7985d006bd7ca057d09313c6afe9f34580000829de8e1050000000000000000000000000000000000000000000000000000000000000000000000000100000000230321000000000000000000000000000000000000000000000000000000000000000000018ee14501ffe6e045050202e9567859b844305a8c33d36d7a31ac29a78b233dc00de39878c77e4b639d23b4f403024f44e842ba4d0aaade34ac03940da2dc6f8ae146f6948a8b240db947a661f3c280f104026d11bea76123efc53ab8e233252486c6bfb1cd499823d383a22711405cc6346580ea30027b64b9e6c9922387a1343d22c8040ae4a1b787ed7f3bfbeac92ba1b8356175fe80897a023cfa03f1fc506eb797116baa22f4d63425f2137fb9c1e3116f1ab5b6e0a6d54aeb01011f8b6c0e5635716d6446867cdc4dba0006989ec5440ef4804a44727bf713a2c702c8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002baa8def39990827a71965b84d61be5d7db6a6270428d8e48d8eb8015d43f65f0e189e52e3fe9f0da5b04fed64effc070e1b97e32cb5445a4434a70eda8c6572f"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Block has been accepted by the local daemon and will be transmitted to the network"
+          },
+          "400": {
+            "description": "Block rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message if available",
+                      "example": "Wrong block blob"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/count": {
+      "get": {
+        "summary": "Retrieves the number of blocks currently in the node's copy of the blockchain",
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "The number of blocks currently in the node's copy of the blockchain",
+                  "example": 2482100
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/{hash}": {
+      "get": {
+        "summary": "Returns the block information for the block with the specified hash",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the block to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/{height}": {
+      "get": {
+        "summary": "Returns the block information for the block with the specified height",
+        "parameters": [
+          {
+            "name": "height",
+            "description": "The hash of the block to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/{hash}/raw": {
+      "get": {
+        "summary": "Retrieves the raw block data for the given block hash",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the block to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block.Raw"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/{height}/raw": {
+      "get": {
+        "summary": "Retrieves the raw block data for the given block hash",
+        "parameters": [
+          {
+            "name": "height",
+            "description": "The height of the block to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block.Raw"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/header/{hash}": {
+      "get": {
+        "summary": "Retrieves the block header for the specified hash",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the block header to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block.Header"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/header/{height}": {
+      "get": {
+        "summary": "Retrieves the block header for the specified height",
+        "parameters": [
+          {
+            "name": "height",
+            "description": "The height of the block header to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block.Header"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/header/top": {
+      "get": {
+        "summary": "Retrieves the block header for top block of the chain",
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block.Header"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/headers/{height}": {
+      "get": {
+        "summary": "Retrieves the block summaries for the 30 preceeding blocks from the specified block including the specified block",
+        "parameters": [
+          {
+            "name": "height",
+            "description": "The height of the block to start retrieving at",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Blocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "maxItems": 31,
+                  "items": {
+                    "$ref": "#/components/schemas/Block.Summary"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/block/template": {
+      "post": {
+        "summary": "Retrieves a block template for mining purposes",
+        "tags": [
+          "Blocks"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "address"
+                ],
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "description": "The target wallet address for the block miner reward",
+                    "example": "TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ"
+                  },
+                  "reserveSize": {
+                    "type": "integer",
+                    "description": "The number of bytes to reserve in the block template for arbitrary data changes (ie. pool miner nonce)",
+                    "example": 6,
+                    "minimum": 0,
+                    "maximum": 255
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "difficulty": {
+                      "type": "integer",
+                      "description": "The target difficulty that the resulting block must meet or exceed",
+                      "example": 4327799156
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "The height of the block the template is prepared for",
+                      "example": 1142929
+                    },
+                    "reservedOffset": {
+                      "type": "integer",
+                      "description": "The offset position in the template of where the arbitrary data may begin",
+                      "example": 376
+                    },
+                    "template": {
+                      "type": "string",
+                      "description": "The hexadecimal (blob) representation of the block template",
+                      "example": "0400728d06eb4625c9e01e38fa87f811edd77c67d80ca38489d7c27f31d3847c9a0e0000bfa6e8e105000000000000000000000000000000000000000000000000000000000000000000000000010000000023032100000000000000000000000000000000000000000000000000000000000000000001b9e14501ff91e145060802d6b857e662cc8338a2a7e06a79e4a8769f6d856fbf48165bd7c29ca2a843bb3b500260e76024a6c203bdde045eced089c3e0fcc902de0cdb485fd843224800db3687f4030276e8d5d2e85e1ece9bbe8f88ef58ea9f94debab42f0b55955abd2987c1bf3bbb80f1040292389822fc43ac0229c99f2fe9a0fbe13c77b57fd668dd8d9aa3db9abcf4d5f380ea30020b60d2efc8e00380b3533ea5b6e42a1c7253524b8892e40355fb60d4be6d45db80897a02c424ab20e84649acf3aea1e0415c67c8b93fbee04b82adf544a1a566b536818f29014e3481ff088c19c46394e3580d3add88974adcbe9aa6d5a39e1b9ff1e1b541ca020600000000000002652b22710fafc9ebd4abb37eaffb7d43b019f563166d6912f33eb584b51c4284eca996fe0020b65bc983cdfd06c997231f14a03a8c4028a03608a234f4f573d5"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Failed to parse wallet address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction": {
+      "put": {
+        "summary": "Attempts to transmit a transaction to the network",
+        "tags": [
+          "Transactions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "description": "The hexadecimal (blob) representation of the transaction to send to the network",
+                "example": "010001026404d48008fff717d2872294b71e51b8304ed711c0fe240a2614610cc0380a5d0b8b13e2652e6c062fbb056b7f1f015a027b2288942d52247932af36dc1d722da61f296089015b83d591f5a71afafa948021015af0c037fcfe8c50f1e11876c98338fe664c85bc11cd696bc04c988b5669deda96a4299dd9cb471795d079da82e25827badcd79400b394e7c51b67c662d0fc03204a3967aa2bc90708c97cc0370597ad9e154dc7d418ab71b981f8bb805cc603bde2fcb1025bb8b7a04e5e5168cebd724c920fcbb3399210543db9cf7ef9440fa0f11f5a2ea908da1f60f359ab2af2f79783b2111362260fc8d562b268dd350dcb07941d179f34cfd43a3b8d689db6ff453fce4e987a537a528a80f011217e0460434e52da411e8760b10c34a3b63236eb966273a26a3ad3fc7a863a3b6bc508b16cc7763b28743f4ba5a9711e95eeb95762aa6e9c79725170d42fc8968dcd051d2eef49e1726db2fd92e76c47455efff52fc0b473899acaff169316f9654802"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaction accepted and relayed to the network"
+          },
+          "400": {
+            "description": "Transaction rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Transaction contains an input which has already been spent"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/{hash}": {
+      "get": {
+        "summary": "Retrieves inforamtion regarding the transaction specified",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the transaction to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "block": {
+                      "$ref": "#/components/schemas/Block.Summary"
+                    },
+                    "detail": {
+                      "$ref": "#/components/schemas/Transaction"
+                    },
+                    "hash": {
+                      "type": "string",
+                      "description": "The hash of the transaction",
+                      "example": "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Transaction.Meta"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/{hash}/indexes": {
+      "get": {
+        "summary": "Retrieves the global output indexes of the given transaction",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the transaction to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "description": "The output indexes of the transaction"
+                  },
+                  "example": [
+                    893753,
+                    3283,
+                    83496,
+                    234
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/{hash}/raw": {
+      "get": {
+        "summary": "Retrieves the raw transaction data for the given transaction hash",
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "The hash of the transaction to retrieve",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction.Raw"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/pool": {
+      "get": {
+        "summary": "Retrieves summary information of the node's copy of the transaction memory pool",
+        "tags": [
+          "Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "The summary of the transactions",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction.Summary"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/pool/delta": {
+      "post": {
+        "summary": "Checks for changes to the transaction memory pool using the supplied parameters",
+        "tags": [
+          "Transactions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "lastKnownBlock",
+                  "transactions"
+                ],
+                "type": "object",
+                "properties": {
+                  "lastKnownBlock": {
+                    "type": "string",
+                    "description": "The hash of the last block we know about",
+                    "example": "2d713f137dc81a7f2dda0f1eafb902b734cae5039adee431bb8977d977d5df2e"
+                  },
+                  "transactions": {
+                    "type": "array",
+                    "description": "An array of transaction hashes that we believe to be in the transaction memory pool",
+                    "items": {
+                      "type": "string",
+                      "description": "The transaction hash",
+                      "example": [
+                        "bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0",
+                        "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "added": {
+                      "type": "array",
+                      "description": "Any array of transactions added to the memory pool",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "hash": {
+                            "type": "string",
+                            "description": "The transaction hash"
+                          },
+                          "detail": {
+                            "$ref": "#/components/schemas/Transaction"
+                          }
+                        }
+                      }
+                    },
+                    "deleted": {
+                      "type": "array",
+                      "description": "An array of transactions deleted from the memory pool",
+                      "items": {
+                        "type": "string",
+                        "description": "The transaction hash"
+                      }
+                    },
+                    "synced": {
+                      "type": "boolean",
+                      "description": "Is the lastKnownBlock hash supplied currently the top block in the blockchain",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transaction/status": {
+      "post": {
+        "summary": "Checks the status of the provided transaction hashes to determine their status",
+        "tags": [
+          "Transactions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "description": "An array of transaction hashes",
+                "items": {
+                  "type": "string",
+                  "description": "The transaction hash to check for"
+                },
+                "example": [
+                  "bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0",
+                  "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b",
+                  "32ddb2488c71c404122bca081daa39e7ac88456c9e3a88f8df6c0e4ca21099c3"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "inBlock": {
+                      "type": "array",
+                      "description": "An array of transaction hashes found in blocks in the blockchain",
+                      "items": {
+                        "type": "string",
+                        "description": "The transaction hash"
+                      },
+                      "example": [
+                        "bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0"
+                      ]
+                    },
+                    "inPool": {
+                      "type": "array",
+                      "description": "An array of transaction hashes currently found in the transaction memory pool",
+                      "items": {
+                        "type": "string",
+                        "description": "The transaction hash"
+                      },
+                      "example": [
+                        "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
+                      ]
+                    },
+                    "notFound": {
+                      "type": "array",
+                      "description": "An array of transaction hashes that could not be found",
+                      "items": {
+                        "type": "string",
+                        "description": "The transaction hash"
+                      },
+                      "example": [
+                        "32ddb2488c71c404122bca081daa39e7ac88456c9e3a88f8df6c0e4ca21099c3"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/indexes/random": {
+      "post": {
+        "summary": "Retrieves random output indexes from the node",
+        "tags": [
+          "Syncronization"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "amounts",
+                  "count"
+                ],
+                "type": "object",
+                "properties": {
+                  "amounts": {
+                    "type": "array",
+                    "description": "An array of amounts we need output indexes for",
+                    "items": {
+                      "type": "number",
+                      "description": "The amount for which we need output indexes"
+                    },
+                    "example": [
+                      1000,
+                      5000,
+                      20000
+                    ]
+                  },
+                  "count": {
+                    "type": "number",
+                    "description": "The number of random output indexes to return for each specified amount",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "integer",
+                        "description": "The amount of the random output indexes",
+                        "example": 1000
+                      },
+                      "outputs": {
+                        "type": "array",
+                        "description": "An array of output indexes",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "index": {
+                              "type": "integer",
+                              "description": "The output index",
+                              "example": 947527
+                            },
+                            "key": {
+                              "type": "string",
+                              "description": "The output key",
+                              "example": "a88f6bc8deb39414e00ed04d9bcdd0dc1f22a3673d222b482634c0e607ffd4fb"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/indexes/{start}/{end}": {
+      "get": {
+        "summary": "Retrieves the output indexes for the given block height range",
+        "parameters": [
+          {
+            "name": "start",
+            "description": "The starting height to retrieve from",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "end",
+            "description": "The ending height to retrieve to",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Syncronization"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "indexes": {
+                        "type": "array",
+                        "description": "An array of output indexes",
+                        "items": {
+                          "type": "integer",
+                          "description": "The output indexes"
+                        },
+                        "example": [
+                          82348,
+                          3243,
+                          93434
+                        ]
+                      },
+                      "key": {
+                        "type": "string",
+                        "description": "The transaction hash",
+                        "example": "4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sync": {
+      "post": {
+        "summary": "Retrieves up to 100 standard blocks for wallet syncing",
+        "description": "Retrieves up to 100 standard blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.",
+        "tags": [
+          "Syncronization"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sync.Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "items",
+                    "synced"
+                  ],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Sync.Block"
+                      }
+                    },
+                    "synced": {
+                      "type": "boolean",
+                      "description": "Whether, given the supplied parameters, the node believes that the requestor is currently syncronized",
+                      "example": false
+                    },
+                    "topBlock": {
+                      "type": "object",
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "description": "The top block hash of the blockchain",
+                          "example": "6f830c50450d01732926e571998fbb849800b8d7ec0f6a8fbacca07d4dff3648"
+                        },
+                        "height": {
+                          "type": "integer",
+                          "description": "The top block height of the blockchain",
+                          "example": 2482868
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sync/detail": {
+      "post": {
+        "summary": "Retrieves up to 100 detailed blocks for syncing",
+        "description": "Retrieves up to 100 detailed blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.",
+        "tags": [
+          "Syncronization"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sync.Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "items",
+                    "synced"
+                  ],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Block.Detailed"
+                      }
+                    },
+                    "synced": {
+                      "type": "boolean",
+                      "description": "Whether, given the supplied parameters, the node believes that the requestor is currently syncronized",
+                      "example": false
+                    },
+                    "topBlock": {
+                      "type": "object",
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "description": "The top block hash of the blockchain",
+                          "example": "6f830c50450d01732926e571998fbb849800b8d7ec0f6a8fbacca07d4dff3648"
+                        },
+                        "height": {
+                          "type": "integer",
+                          "description": "The top block height of the blockchain",
+                          "example": 2482868
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sync/raw": {
+      "post": {
+        "summary": "Retrieves up to 100 raw blocks for syncing",
+        "description": "Retrieves up to 100 raw blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.",
+        "tags": [
+          "Syncronization"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sync.Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "items",
+                    "synced"
+                  ],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Block.Raw"
+                      }
+                    },
+                    "synced": {
+                      "type": "boolean",
+                      "description": "Whether, given the supplied parameters, the node believes that the requestor is currently syncronized",
+                      "example": false
+                    },
+                    "topBlock": {
+                      "type": "object",
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "description": "The top block hash of the blockchain",
+                          "example": "6f830c50450d01732926e571998fbb849800b8d7ec0f6a8fbacca07d4dff3648"
+                        },
+                        "height": {
+                          "type": "integer",
+                          "description": "The top block height of the blockchain",
+                          "example": 2482868
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed Client Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "An informative error message is available",
+                      "example": "Could not parse request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Block": {
+        "properties": {
+          "alreadyGeneratedCoins": {
+            "type": "integer",
+            "description": "The number of already generated coins in the blockchain as of this block",
+            "example": 3309050796227
+          },
+          "alreadyGeneratedTransactions": {
+            "type": "integer",
+            "description": "The number of already generated transactions in the blockchain as of this block",
+            "example": 2728607
+          },
+          "baseReward": {
+            "type": "integer",
+            "description": "The miner reward of the block excluding any penalties or fees",
+            "example": 2881614
+          },
+          "blockSize": {
+            "type": "integer",
+            "description": "The size of the block in bytes",
+            "example": 8359
+          },
+          "depth": {
+            "type": "integer",
+            "description": "The depth of the block in the blockchain (ie. confirmations)",
+            "example": 12
+          },
+          "difficulty": {
+            "type": "integer",
+            "example": 3668838478
+          },
+          "effectiveSizeMedian": {
+            "type": "integer"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The hash of the block",
+            "example": "b226a29c8ea906d89ecda798993888307e2f9da86eb3787a63c9adb388c47bc1"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the block",
+            "example": 1129696
+          },
+          "majorVersion": {
+            "type": "integer",
+            "description": "The major version of the block",
+            "example": 4
+          },
+          "minorVersion": {
+            "type": "integer",
+            "description": "The minor version of the block",
+            "example": 0
+          },
+          "nonce": {
+            "type": "integer",
+            "description": "The nonce of the block",
+            "example": 1412340624
+          },
+          "orphan": {
+            "type": "boolean",
+            "description": "Whether the block is an orphan or not -- if orphaned, it is not in the main chain",
+            "example": false
+          },
+          "penalty": {
+            "type": "integer",
+            "example": 0
+          },
+          "prevHash": {
+            "type": "string",
+            "description": "The hash of the previous block in the blockchain",
+            "example": "b5b53a17371e3681f1ded1ddd20339f8c95f54e7774c4fb759db3367c5e75a2d"
+          },
+          "reward": {
+            "type": "integer",
+            "description": "The total miner reward for this block",
+            "example": 2881824
+          },
+          "sizeMedian": {
+            "type": "integer",
+            "description": "The median size of the last blocks",
+            "example": 309
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp of this block",
+            "example": 1546912440
+          },
+          "totalFeeAmount": {
+            "type": "integer",
+            "description": "The total amount of fees included in this block",
+            "example": 210
+          },
+          "transactions": {
+            "type": "array",
+            "description": "The transactions contained in the block",
+            "items": {
+              "$ref": "#/components/schemas/Transaction.Summary"
+            }
+          },
+          "transactionsCumulativeSize": {
+            "type": "integer",
+            "description": "The total size of the transactions included in this block in bytes",
+            "example": 8144
+          }
+        }
+      },
+      "Block.Detailed": {
+        "properties": {
+          "alreadyGeneratedCoins": {
+            "type": "integer",
+            "description": "The number of already generated coins in the blockchain as of this block",
+            "example": 3309050796227
+          },
+          "alreadyGeneratedTransactions": {
+            "type": "integer",
+            "description": "The number of already generated transactions in the blockchain as of this block",
+            "example": 2728607
+          },
+          "baseReward": {
+            "type": "integer",
+            "description": "The miner reward of the block excluding any penalties or fees",
+            "example": 2881614
+          },
+          "blockSize": {
+            "type": "integer",
+            "description": "The size of the block in bytes",
+            "example": 8359
+          },
+          "depth": {
+            "type": "integer",
+            "description": "The depth of the block in the blockchain (ie. confirmations)",
+            "example": 12
+          },
+          "difficulty": {
+            "type": "integer",
+            "description": "The difficulty of the block",
+            "example": 3668838478
+          },
+          "hash": {
+            "type": "string",
+            "description": "The hash of the block",
+            "example": "b226a29c8ea906d89ecda798993888307e2f9da86eb3787a63c9adb388c47bc1"
+          },
+          "index": {
+            "type": "integer",
+            "description": "The 0-based index of the block",
+            "example": 1129696
+          },
+          "majorVersion": {
+            "type": "integer",
+            "description": "The major version of the block",
+            "example": 4
+          },
+          "minorVersion": {
+            "type": "integer",
+            "description": "The minor version of the block",
+            "example": 0
+          },
+          "nonce": {
+            "type": "integer",
+            "description": "The nonce of the block",
+            "example": 1412340624
+          },
+          "prevHash": {
+            "type": "string",
+            "description": "The hash of the previous block in the blockchain",
+            "example": "b5b53a17371e3681f1ded1ddd20339f8c95f54e7774c4fb759db3367c5e75a2d"
+          },
+          "reward": {
+            "type": "integer",
+            "description": "The total miner reward for this block",
+            "example": 2881824
+          },
+          "sizeMedian": {
+            "type": "integer",
+            "description": "The median size of the last blocks",
+            "example": 309
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp of this block",
+            "example": 1546912440
+          },
+          "totalFeeAmount": {
+            "type": "integer",
+            "description": "The total amount of fees included in this block",
+            "example": 210
+          },
+          "transactions": {
+            "type": "array",
+            "description": "The transactions contained in the block",
+            "items": {
+              "$ref": "#/components/schemas/Transaction.Detailed"
+            }
+          },
+          "transactionsCumulativeSize": {
+            "type": "integer",
+            "description": "The total size of the transactions included in this block in bytes",
+            "example": 8144
+          }
+        }
+      },
+      "Block.Header": {
+        "properties": {
+          "alreadyGeneratedCoins": {
+            "type": "integer",
+            "description": "The number of already generated coins in the blockchain as of this block",
+            "example": 3309050796227
+          },
+          "alreadyGeneratedTransactions": {
+            "type": "integer",
+            "description": "The number of already generated transactions in the blockchain as of this block",
+            "example": 2728607
+          },
+          "baseReward": {
+            "type": "integer",
+            "description": "The base miner reward of the block",
+            "example": 2881614
+          },
+          "depth": {
+            "type": "integer",
+            "description": "The depth of the block in the blockchain (ie. confirmations)",
+            "example": 12
+          },
+          "difficulty": {
+            "type": "integer",
+            "description": "The difficulty of the block",
+            "example": 3668838478
+          },
+          "hash": {
+            "type": "string",
+            "description": "The hash of the block",
+            "example": "b226a29c8ea906d89ecda798993888307e2f9da86eb3787a63c9adb388c47bc1"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the block",
+            "example": 1129696
+          },
+          "majorVersion": {
+            "type": "integer",
+            "description": "The major version of the block",
+            "example": 4
+          },
+          "minorVersion": {
+            "type": "integer",
+            "description": "The minor version of the block",
+            "example": 0
+          },
+          "nonce": {
+            "type": "integer",
+            "description": "The nonce of the block",
+            "example": 1412340624
+          },
+          "prevHash": {
+            "type": "string",
+            "description": "The hash of the previous block in the blockchain",
+            "example": "b5b53a17371e3681f1ded1ddd20339f8c95f54e7774c4fb759db3367c5e75a2d"
+          },
+          "reward": {
+            "type": "integer",
+            "description": "The miner reward issued for this block including any penalties or fees",
+            "example": 2881824
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the block in bytes",
+            "example": 8359
+          },
+          "sizeMedian": {
+            "type": "integer",
+            "description": "The median size of the last blocks",
+            "example": 309
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp of the block",
+            "example": 1546912440
+          },
+          "totalFeeAmount": {
+            "type": "integer",
+            "description": "The total amount of fees contained in this block",
+            "example": 210
+          },
+          "transactionCount": {
+            "type": "integer",
+            "description": "The number of transactions contained in the block",
+            "example": 4
+          },
+          "transactionsCumulativeSize": {
+            "type": "integer",
+            "description": "The total size of the transactions included in this block in bytes",
+            "example": 8144
+          }
+        }
+      },
+      "Block.Raw": {
+        "properties": {
+          "blob": {
+            "type": "string",
+            "description": "The hexadecimal (blob) representation of the block",
+            "example": "06001739767dd0e08c702ad89533734b7ab539635a8ca4ff4b1b181b25eb0e25e10b0600add28bf5056a7329097058bb998999e1f02bda39521f4374a5cb4e5fa127726f632e7bc99c4fa900b0010187b71101ffd5b6110907029d27e4a7a46e09afa3239e2c2bf112c86461e528d10e8290786ad754993a256050029be47d2faf447af58df0a8828b47f8d6d5bc928f74144382f5f3e0a11d73e06a6402ddbdae345e3a2594665c990f691f2cdd546397c0b1bdcdc3e1c3f037412d5470b81702c3084995b11c6211aae5247dfd6fc12517785abcd6bc1ae3e18cbed48e8c7d1e80f104025521a7016b0d62ac87a00920ee0f190a86635b18d049df277872eed93f0484fba0f736028e1daed86ea6210ff1110bf8e5ab7e246fef33b08db43519326e3e2859c70f75c096b102025894d7b5101f5c368789eb2fcefa7c991d2f369861895815bc9158dfd06dcea180e892260209373e865d6d3fb0df75c3b67cc022b6deecf8043ce3f0695a46eb0f094d7d6b80cab5ee01023d881c5a4942a9319a1512741d907576e1e7c72d53dec431377a2abdd8b2578f57012e7057b1cf8984a7bd92173c20ac439a90167d988aedbc6fc2b45d2463f99a9602110000000bb0409f3d0000000000000000000321007d28f9d53137a781b53a2c90918435fa5408d1d18c799efad43653ae0a36bd7401aac0970101ff82c0970107090202e151b61d5a534930924a592fe0386bd8fac98dd6902f5ccb0aab694f0b116a46022f32a50a3d1c96a30ba1840b8e18488c03754194a87a9cfc5c6b2e3b9608e49cac02028f4d4fe10264702e4f9a4a30bdf452b1c0e97775e9906c1dd17c174123d7c660b817021b45a39d1a25f33c622e8e9a98d9cb5d43f75fdc6a1b52782b10b228595c78f5c0b80202ce30bd311534d3b4277364263a47331ff64f71c27554c8317de508746600b99180ea3002ecba954ff40dff072b9265df6b41fa79d0246956af72284fb7b986f7fabd60da80897a022c97e89c140bde7a49f41a4239310efcb0af62770702af72efccebb7779b4161340129b525d38f8a6cd8bbb3186ed2a41d71760631403de225475d597430cf614afa021100000000b0409f3d0000000000000000000649842e7e7369cc6f2b11d981380cdab47d23ff2bd4548899ebfd6bd1b75e65a5cc4b606782cebce21ff17c627442b8a609a142f867ed79d77234df340cef0f7ae4496518f3cc199c54f1da06e659921d107e1b3aea3e704d7c118b20364d7bd2034f291ba033c96badcc80344691587bc57f3fbd47d3f2a15a7cc72a4078f69b32179df3ca425b14baef191dfa3fdb2acd6ac01eb780026a4feb3ee49705c77a00f92deabf6ba46123217b88e499326b1c3efceea26b899b55423965a9d2af8b"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The block hash",
+            "example": "082e74ad526928031c1200e46f636b72e98a1abbc23edcb8b4afcd354bcb7d31"
+          },
+          "transactions": {
+            "type": "array",
+            "description": "The transactions contained in the block",
+            "items": {
+              "$ref": "#/components/schemas/Transaction.Raw"
+            }
+          }
+        }
+      },
+      "Block.Summary": {
+        "properties": {
+          "difficulty": {
+            "type": "integer",
+            "description": "The difficulty of the block",
+            "example": 664181705
+          },
+          "hash": {
+            "type": "string",
+            "description": "The hash of the block",
+            "example": "cec44b86eec8e26cfbe1b78fa50c893ffef90fe4c7b0d6f0b17d6c290f98cce7"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the block",
+            "example": 1000000
+          },
+          "nonce": {
+            "type": "integer",
+            "description": "The nonce of the block",
+            "example": 3422693826
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the block in bytes",
+            "example": 12489
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp of the block",
+            "example": 1543009724
+          },
+          "tx_count": {
+            "type": "integer",
+            "description": "The number of transactions included in the block",
+            "example": 2
+          }
+        }
+      },
+      "Fee": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "The address to which node fees should be paid for this node",
+            "example": "TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ"
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount in atomic units that the node should be paid using the node",
+            "example": 10000
+          }
+        }
+      },
+      "Height": {
+        "properties": {
+          "height": {
+            "type": "number",
+            "description": "The block height that the node has currently obtained",
+            "example": 2184547
+          },
+          "networkHeight": {
+            "type": "number",
+            "description": "The current observed blockchain height as reported by the nodes peers",
+            "example": 2184547
+          }
+        }
+      },
+      "Info": {
+        "properties": {
+          "alternateBlockCount": {
+            "type": "number",
+            "description": "The number of alternate (candidate) blocks currently in the node's local cache",
+            "example": 146
+          },
+          "difficulty": {
+            "type": "number",
+            "description": "The current block difficulty",
+            "example": 13530119534
+          },
+          "gregPeerlistSize": {
+            "type": "number",
+            "description": "The number of peers that the node has had issues with",
+            "example": 2222
+          },
+          "hashrate": {
+            "type": "number",
+            "description": "The current estimate hashrate of the entire network",
+            "example": 451003984
+          },
+          "height": {
+            "type": "number",
+            "description": "The block height that the node has currently obtained",
+            "example": 2184547
+          },
+          "incomingConnections": {
+            "type": "number",
+            "description": "The current number of inbound connections the node has established",
+            "example": 17
+          },
+          "lastBlockIndex": {
+            "type": "number",
+            "description": "The last block index (0-based) committed to the local chain by the node",
+            "example": 2184545
+          },
+          "majorVersion": {
+            "type": "number",
+            "description": "The current blockchain major version number",
+            "example": 6
+          },
+          "minorVersion": {
+            "type": "number",
+            "description": "The current blockchain minor version number",
+            "example": 0
+          },
+          "networkHeight": {
+            "type": "number",
+            "description": "The current observed blockchain height as reported by the nodes peers",
+            "example": 2184547
+          },
+          "outgoingConnections": {
+            "type": "number",
+            "description": "The current number of outbound connections the node has established",
+            "example": 8
+          },
+          "startTime": {
+            "type": "number",
+            "description": "The unix timestamp of when the node was started",
+            "example": 1578402690
+          },
+          "supportedHeight": {
+            "type": "number",
+            "description": "The current network height this node has support for",
+            "example": 2200000
+          },
+          "synced": {
+            "type": "boolean",
+            "description": "Whether the node believes it is synced or not",
+            "example": true
+          },
+          "transactionsPoolSize": {
+            "type": "number",
+            "description": "The number of transactions currently in the transaction pool",
+            "example": 4
+          },
+          "transactionsSize": {
+            "type": "number",
+            "description": "The number of user-generated transactions currently in the blockchain",
+            "example": 3584242
+          },
+          "upgradeHeights": {
+            "type": "array",
+            "description": "The upgrade heights currently recognized by this node",
+            "items": {
+              "type": "number",
+              "example": [
+                187000,
+                350000,
+                440000,
+                620000,
+                700000,
+                800000,
+                1000000,
+                1200000,
+                1300000,
+                1400000,
+                1600000,
+                1800000,
+                2000000,
+                2200000,
+                2400000,
+                2600000,
+                2800000,
+                3000000
+              ]
+            }
+          },
+          "version": {
+            "type": "string",
+            "description": "The current node version number (X.Y.Z)",
+            "example": "1.0.0"
+          },
+          "whitePeerlistSize": {
+            "type": "number",
+            "description": "The number of candidate peers available for additional connections",
+            "example": 439
+          }
+        }
+      },
+      "Peers": {
+        "properties": {
+          "greyPeers": {
+            "type": "array",
+            "description": "The graylisted peer addresses as a string \"ip:port\"",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "69.135.29.102:11897",
+              "138.201.216.74:11897"
+            ]
+          },
+          "peers": {
+            "type": "array",
+            "description": "The candidate peer addresses as a string \"ip:port\"",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "54.37.79.180:11897",
+              "192.121.44.109:11897"
+            ]
+          }
+        }
+      },
+      "Sync.Block": {
+        "properties": {
+          "blockHash": {
+            "type": "string",
+            "description": "The block hash",
+            "example": "cec44b86eec8e26cfbe1b78fa50c893ffef90fe4c7b0d6f0b17d6c290f98cce7"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The block height",
+            "example": 1000000
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp of the block",
+            "example": 1543009724
+          },
+          "transactions": {
+            "type": "array",
+            "description": "An array of transactions in the block",
+            "items": {
+              "type": "object",
+              "properties": {
+                "hash": {
+                  "type": "string",
+                  "description": "The hash of the transaction",
+                  "example": "fdf5c761c116d1c291b691d1f696a19e4a422ac0970f41af1cd38cd8a64d75a7"
+                },
+                "publicKey": {
+                  "type": "string",
+                  "description": "The public key of the transaction",
+                  "example": "00a45147725a871df09e1bd73a543d0eb95d81c158077da2dadde089f89016d0"
+                },
+                "unlockTime": {
+                  "type": "integer",
+                  "description": "The unlock time of the transaction",
+                  "example": 1106538
+                },
+                "paymentId": {
+                  "type": "string",
+                  "description": "The payment ID of the transaction",
+                  "example": "487b9be44dbe529e626ce5287ed387638fe6b208f15ee72a9807ad65719a169d"
+                },
+                "inputs": {
+                  "type": "array",
+                  "description": "An array of the transaction inputs",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "keyImage": {
+                        "type": "string",
+                        "example": "5f279712ba438978cf48521914880e21a6be990e644a2a5986dbeda0966c5891"
+                      },
+                      "amount": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "02"
+                      }
+                    }
+                  }
+                },
+                "outputs": {
+                  "type": "array",
+                  "description": "An array of the transaction outputs",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "index": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "key": {
+                        "type": "string",
+                        "example": "d1e663304b3cb396fe279631dc3d10f56a0333cc39840a4fbd9957eef58b52fb"
+                      },
+                      "amount": {
+                        "type": "integer",
+                        "example": 9
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "02"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Sync.Request": {
+        "properties": {
+          "checkpoints": {
+            "type": "array",
+            "description": "An array of block hash checkpoints",
+            "items": {
+              "type": "string",
+              "description": "The block hash"
+            },
+            "example": [
+              "b8166ed940ac4c8c33cd077fb49bdca43e4243e6cc2b61b64f39193a4b13d4a6",
+              "7fb97df81221dd1366051b2d0bc7f49c66c22ac4431d879c895b06d66ef66f4c"
+            ]
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height to start returning blocks from",
+            "example": 2000000
+          },
+          "skipCoinbaseTransactions": {
+            "type": "boolean",
+            "description": "Whether to skip returning blocks with only coinbase transactions",
+            "example": false
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "The timestamp to start returning blocks from",
+            "example": 1587758989
+          }
+        }
+      },
+      "Transaction": {
+        "properties": {
+          "extra": {
+            "type": "string",
+            "description": "The hexadecimal representation of the data contained in TX_EXTRA",
+            "example": "01a93114cb9a8863c15611c3c0e84f66faca7fae5c445a04938e364a9aa7fbb243"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Transaction.Input.Coinbase"
+                },
+                {
+                  "$ref": "#/components/schemas/Transaction.Input.Key"
+                }
+              ]
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Transaction.Output.Key"
+                }
+              ]
+            }
+          },
+          "unlockTime": {
+            "type": "integer",
+            "description": "The unlock time of the transaction",
+            "example": 0
+          },
+          "version": {
+            "type": "integer",
+            "description": "The transaction version number",
+            "example": 1
+          }
+        }
+      },
+      "Transaction.Detailed": {
+        "properties": {
+          "extra": {
+            "type": "string",
+            "description": "The hexadecimal (blob) representation of the data in TX_EXTRA",
+            "example": "01a93114cb9a8863c15611c3c0e84f66faca7fae5c445a04938e364a9aa7fbb243"
+          },
+          "fee": {
+            "type": "integer",
+            "description": "The transaction fee",
+            "example": 2000
+          },
+          "hash": {
+            "type": "string",
+            "description": "The transaction hash",
+            "example": "c21006e57ed32b54ad3a73bfc3d68faae3265f6dc916fa8ddcd67f3870fae49e"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Transaction.Input.Coinbase"
+                },
+                {
+                  "$ref": "#/components/schemas/Transaction.Input.Key"
+                }
+              ]
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Transaction.Output.Key"
+                }
+              ]
+            }
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "The payment ID provided in the transaction",
+            "example": "c085144ab554399546ed805b790beb6ee9035a86c74e272af70cd4f1897256ff"
+          },
+          "ringSize": {
+            "type": "integer",
+            "description": "The number of participant keys in the ring signatures",
+            "example": 4
+          },
+          "signatures": {
+            "type": "array",
+            "description": "An array of signatures for the array of inputs",
+            "items": {
+              "type": "array",
+              "description": "The array of signatures for a single input",
+              "items": {
+                "type": "string",
+                "description": "The ring signature",
+                "example": [
+                  "6fd58a9aa7f6129de5fe56e3bbe55d31e3fc23e7b533c4197affebcf9e27c108fbdfa698509d8ed4eff657c8fca3827ba589063d178e1f08aac3e0f96b7a2707",
+                  "dff8fdeded98ae0cb2ae34ce392605f193e140ab1451854f4092bc1b6169da02e4081cc5c2156b9f712c7d8ed2574a95a8058a101a221d9336476af26f1e8c0a",
+                  "4bfc3cc3407c116d18d3136a69c1a96a6ffb369c83623dd148d04c78805ba30b850194df327aa82f4c495549ec65d20732a075d9495ee9e58dda9c080338c90e",
+                  "57aaa125f7b85bd1899cac2c9f40a9b4ac36976ebc64254f07c768a10116cf01812c4749fd69fa4d54935a0a94b9d3a626b6ead66d3248f3810c0cb7c0c23a04"
+                ]
+              }
+            }
+          },
+          "signaturesSize": {
+            "type": "integer",
+            "description": "The size of the transaction signatures in bytes"
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the transaction in bytes",
+            "example": 689
+          },
+          "totalInputsAmount": {
+            "type": "integer",
+            "description": "The total amount of the transaction inputs",
+            "example": 700000
+          },
+          "totalOutputsAmount": {
+            "type": "integer",
+            "description": "The total amount of the transaction outputs",
+            "example": 698000
+          },
+          "unlockTime": {
+            "type": "integer",
+            "description": "The unlock time of the transaction",
+            "example": 0
+          }
+        }
+      },
+      "Transaction.Input.Coinbase": {
+        "properties": {
+          "height": {
+            "type": "integer",
+            "description": "The height at which the input was generated",
+            "example": 2482955
+          },
+          "type": {
+            "type": "string",
+            "description": "The input type",
+            "example": "ff"
+          }
+        }
+      },
+      "Transaction.Input.Key": {
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "description": "The amount of the input",
+            "example": 9
+          },
+          "keyImage": {
+            "type": "string",
+            "description": "The key image of the input",
+            "example": "6731c24ee884dbefc2e5f58becfebaa5540ef5117d7f325a5f1832c1e03716c5"
+          },
+          "offsets": {
+            "description": "The output offsets in the global chain that were used in the ring signatures",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "The relative offset index position"
+            },
+            "example": [
+              122343,
+              9234,
+              345356,
+              82476
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "The input type",
+            "example": "02"
+          }
+        }
+      },
+      "Transaction.Meta": {
+        "properties": {
+          "amountOut": {
+            "type": "integer",
+            "description": "The output amount of the transaction",
+            "example": 63817109
+          },
+          "fee": {
+            "type": "integer",
+            "description": "The transaction fee paid",
+            "example": 5500
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "The payment ID provided in the transaction",
+            "example": "6bf60c221b49c4a6cdec704064b3cfd3202c214f613ed027ff9a267edd646790"
+          },
+          "ringSize": {
+            "type": "integer",
+            "description": "The number of participant keys in the ring signatures",
+            "example": 4
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the transaction in bytes",
+            "example": 2662
+          }
+        }
+      },
+      "Transaction.Output.Key": {
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "description": "The amount of the output",
+            "example": 400
+          },
+          "key": {
+            "type": "string",
+            "description": "The one-time output key of the output",
+            "example": "db1eac560e2039a37942973474db6f16f1043578520b0551bac339a85b74e78f"
+          },
+          "type": {
+            "type": "string",
+            "description": "The output type",
+            "example": "02"
+          }
+        }
+      },
+      "Transaction.Raw": {
+        "properties": {
+          "blob": {
+            "type": "string",
+            "description": "The hexadecimal (blob) representation of the transaction",
+            "example": "0100030280f10404c4ba59010157b8d78f7e6b8a9f414e26ca53b407e816bc69b749d3ba7934c7c7ced5e66ffde902a00604b5ac7e01016496ad87f79fd4c6d01bdbbd64a2dfcc03ab3d6b4e5d48751ec2ce7539898be02d02e0dc2a04fce13601018b0567a0e217e22543fd9afe70f79c831d1584ade9044abb8394848e9e207e2fd3f00a14022a49012af82b7f3538277459116104d1d4c02f5d0ab0994c84c92a9ae61a76bc50020d3726bfbaae5f51dab61e238cb50b0053e8f4edfb84b73ff830c2f1f9698132c801022f880f812621eb5f89c87a84d2ac7af3e2cc35959185c6336d78612f0ae3bcd7f40302b5199b186ab1f96dfc20ea37065d3762accaaaff2e83e9b431e521a1dade7946b8170228b57b81b515b3ff7c319b9f1dd7242e23bc1b667065bdf73a9e7b858f6b3b2aa01f02edd5847bfb845aed48c381054b1ae547b70db68a15e312caece85c2ba0c83a69b0ea01027ebec6428048bbe9ad80f6e6a45a8155013537985203995e90127eefd8426c67c0b802023d6d60a6c5273cfeb43bdb6b86bfdcbe979d44476473b5cc5581740fb31604cdc09a0c029a943c5d5c2687371d80719d5ff2d6419981b5330ad0b0c98581fa882d2eb9d9a0c21e02aa5089b324e14f6c6dc4ad932a3659b82a10c59aabcef5ee9a95a47c7de07783440113ce4b5ce1d8476359c3238b07b22305a63bb9fffd017483ad551965dee6ea1602210037ee835e4f6cfa9880f563ffd49a4bdbf28b63ab4c84b03c8a32a71e854afb3edc2b11063c5d55fa34263d205ada373a72dafe3deeebb3dac5cb06bbed6f4a0ac52f7560030d9c668fb29e16eb594b1064bdcab23cb37117887ea5593f3acd0d176e6c6cdd524d790726cf21cb3d987f0b112e642b4802a56015abe93e86cb064f280d0c90d1649ad217a723101a9fb2dbbb4f551bc6a51b299c9c5b17dc5a0e8e9efe318e24ffd2f989e5de411b96ac017b6299f67854e903d51f393774910e2cf79f49d75698f45892c58e040ddfc6c65f59e57f30c59f033fe852a838f608d0a93802fb772f664250448ffc47647813a5c7f408987fefd82442ea0c4ba1059f5fee388a2541dbd7095bde69e0dc0a98c5189d147d69067085074536207a05851c1ddc6167a2199ffa114a260c769d6eb7b5ab70fe0a9868ab35b38eb2980cc9ed56b764535b2a8a4f7e80abc121242c5e1dfaf0b8b2683bbe96c923634805d699f5322a2dfaa5919154cf6c455d42c9b4f5e935d944860a6b5312f337780c1e414b7e895e40c881b8f37dc07b972c2d0892075cac7a5da5a81d9429728005c05a30869e7f04c4f03225773e5aeb7816824582a532e295680ebac5b689c00b665852bf137ff9d27f60afd0297d8cd63848f39022baa704b12e217a5a5c4d02f58e6ab1ca14fd7a63c257496ec662711207c49fa46194c971220a3cc9ae320379d049956d776e7cb12b0e73438e11e479cb7f659652cd76fc28e19de9159c0d35dbedcf277bc9156fe44334a8d5e819144278daf79171e590cc9c8d1fefb508f1bc483ffdeb0372209e3c0cc9b015e56908b435f49a41bebbd95c5c9cbac60063164fc79e56e46fc5ba1830a182b3d38975b119a5d83cc46723deb466a7a10652895dd14687441a999e56437af5bbb41fac4cbc57060d1f4a97163b9d925906ef95614e8bfa5001327080b139008297d9870749ae47c701ed003d8e985eab0d29c1879bc679b6bd4407ecd6e56674514febd87dfaa78550cc49b2894d5abe07c4514463997dc9d0f845e2ac75b156ac713d4797e7f397d206e46b7ea99f900ca5d304af88eec98bb86b36f721a014c7aed950ba8328fb17204f32859a53660e"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The transaction hash",
+            "example": "49842e7e7369cc6f2b11d981380cdab47d23ff2bd4548899ebfd6bd1b75e65a5"
+          }
+        }
+      },
+      "Transaction.Summary": {
+        "properties": {
+          "amountOut": {
+            "type": "integer",
+            "description": "The total transaction output amount",
+            "example": 8990
+          },
+          "fee": {
+            "type": "integer",
+            "description": "The transaction fee",
+            "example": 10
+          },
+          "hash": {
+            "type": "string",
+            "description": "The transaction hash",
+            "example": "1a3cf7c2e0e40cd86fe9acb21bb70e9f5f720fd155621ceea1b63e4c7d1c1de7"
+          },
+          "size": {
+            "type": "integer",
+            "description": "The transaction size in bytes",
+            "example": 511
+          }
+        }
+      }
+    }
+  }
+}
