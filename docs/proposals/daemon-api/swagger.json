@@ -130,7 +130,7 @@
       }
     },
     "/block": {
-      "put": {
+      "post": {
         "summary": "Attempts to add a new block to the blockchain",
         "tags": [
           "Blocks"
@@ -580,7 +580,7 @@
       }
     },
     "/transaction": {
-      "put": {
+      "post": {
         "summary": "Attempts to transmit a transaction to the network",
         "tags": [
           "Transactions"
