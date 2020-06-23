@@ -7,8 +7,8 @@ info:
     name: Help via Discord Chat
     url: http://chat.turtlecoin.lol
   license:
-    name: GNU Affero General Public License version 3
-    url: 'https://opensource.org/licenses/AGPL-3.0'
+    name: GNU General Public License version 3
+    url: 'https://opensource.org/licenses/GPL-3.0'
 tags:
   - name: Node Information
   - name: Blocks
@@ -20,20 +20,24 @@ externalDocs:
 servers:
   - url: 'http://127.0.0.1:11898'
 paths:
-  /info:
+  /fee:
     get:
-      summary: Retrieves information regarding the current status of the node
+      summary: Retrieves information regarding the node's fee for sending transactions via this interface
       tags:
         - Node Information
       responses:
-        '500':
-          description: Internal server error
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/Fee'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /height:
     get:
@@ -41,29 +45,37 @@ paths:
       tags:
         - Node Information
       responses:
-        '500':
-          description: Internal server error
         '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Height'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
-  /fee:
+  /info:
     get:
-      summary: Retrieves information regarding the node's fee for sending transactions via this interface
+      summary: Retrieves information regarding the current status of the node
       tags:
         - Node Information
       responses:
-        '500':
-          description: Internal server error
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Fee'
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /peers:
     get:
@@ -71,14 +83,18 @@ paths:
       tags:
         - Node Information
       responses:
-        '500':
-          description: Internal server error
         '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Peers'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block:
     post:
@@ -92,27 +108,39 @@ paths:
             schema:
               type: string
               description: The hexadecimal (blob) representation of the block to add to the blockchain
-              example: 0400850d6b0dcd9aee8adc27ddf2c0102cc7985d006bd7ca057d09313c6afe9f34580000829de8e1050000000000000000000000000000000000000000000000000000000000000000000000000100000000230321000000000000000000000000000000000000000000000000000000000000000000018ee14501ffe6e045050202e9567859b844305a8c33d36d7a31ac29a78b233dc00de39878c77e4b639d23b4f403024f44e842ba4d0aaade34ac03940da2dc6f8ae146f6948a8b240db947a661f3c280f104026d11bea76123efc53ab8e233252486c6bfb1cd499823d383a22711405cc6346580ea30027b64b9e6c9922387a1343d22c8040ae4a1b787ed7f3bfbeac92ba1b8356175fe80897a023cfa03f1fc506eb797116baa22f4d63425f2137fb9c1e3116f1ab5b6e0a6d54aeb01011f8b6c0e5635716d6446867cdc4dba0006989ec5440ef4804a44727bf713a2c702c8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002baa8def39990827a71965b84d61be5d7db6a6270428d8e48d8eb8015d43f65f0e189e52e3fe9f0da5b04fed64effc070e1b97e32cb5445a4434a70eda8c6572f
+              example: "0400850d6b0dcd9aee8adc27ddf2c0102cc7985d006bd7ca057d09313c6afe9f34580000829de8e1050000000000000000000000000000000000000000000000000000000000000000000000000100000000230321000000000000000000000000000000000000000000000000000000000000000000018ee14501ffe6e045050202e9567859b844305a8c33d36d7a31ac29a78b233dc00de39878c77e4b639d23b4f403024f44e842ba4d0aaade34ac03940da2dc6f8ae146f6948a8b240db947a661f3c280f104026d11bea76123efc53ab8e233252486c6bfb1cd499823d383a22711405cc6346580ea30027b64b9e6c9922387a1343d22c8040ae4a1b787ed7f3bfbeac92ba1b8356175fe80897a023cfa03f1fc506eb797116baa22f4d63425f2137fb9c1e3116f1ab5b6e0a6d54aeb01011f8b6c0e5635716d6446867cdc4dba0006989ec5440ef4804a44727bf713a2c702c8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002baa8def39990827a71965b84d61be5d7db6a6270428d8e48d8eb8015d43f65f0e189e52e3fe9f0da5b04fed64effc070e1b97e32cb5445a4434a70eda8c6572f"
       responses:
-        '500':
-          description: Internal server error
-        201:
+        202:
           description: Block has been accepted by the local daemon and will be transmitted to the network
-        400:
-          description: Block rejected
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message if available
-                    example: Wrong block blob
-                  errorCode:
-                    type: integer
-                    description: The error code if available
-                    example: 104
+                type: string
+                description: The blockhash of the block submitted
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        503:
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/count:
     get:
@@ -120,8 +148,6 @@ paths:
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
         200:
           description: OK
           content:
@@ -130,6 +156,18 @@ paths:
                 type: integer
                 description: The number of blocks currently in the node's copy of the blockchain
                 example: 2482100
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/{hash}:
     get:
@@ -144,16 +182,36 @@ paths:
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
         200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Block'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/{height}:
     get:
@@ -168,16 +226,36 @@ paths:
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
         200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Block'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/{hash}/raw:
     get:
@@ -192,16 +270,36 @@ paths:
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
         200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Block.Raw'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/{height}/raw:
     get:
@@ -216,79 +314,55 @@ paths:
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
         200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Block.Raw'
-
-  /block/header/{hash}:
-    get:
-      summary: Retrieves the block header for the specified hash
-      parameters:
-        - name: hash
-          description: The hash of the block header to retrieve
-          in: path
-          required: true
-          schema:
-            type: string
-      tags:
-        - Blocks
-      responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
-        200:
-          description: OK
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Block.Header'
-
-  /block/header/{height}:
-    get:
-      summary: Retrieves the block header for the specified height
-      parameters:
-        - name: height
-          description: The height of the block header to retrieve
-          in: path
-          required: true
-          schema:
-            type: integer
-      tags:
-        - Blocks
-      responses:
-        500:
-          description: Internal server error
-        404:
-          description: Block not found
-        200:
-          description: OK
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Block.Header'
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
-  /block/header/top:
+  /block/last:
     get:
       summary: Retrieves the block header for top block of the chain
       tags:
         - Blocks
       responses:
-        500:
-          description: Internal server error
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Block.Header'
+                $ref: '#/components/schemas/Block'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /block/headers/{height}:
     get:
@@ -315,7 +389,7 @@ paths:
                 type: array
                 maxItems: 31
                 items:
-                  $ref: '#/components/schemas/Block.Summary'
+                  $ref: '#/components/schemas/Block'
 
   /block/template:
     post:
@@ -342,21 +416,8 @@ paths:
                   minimum: 0
                   maximum: 255
       responses:
-        500:
-          description: Internal server error
-        400:
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Failed to parse wallet address
-        200:
-          description: OK
+        201:
+          description: Created
           content:
             application/json:
               schema:
@@ -374,10 +435,28 @@ paths:
                     type: integer
                     description: The offset position in the template of where the arbitrary data may begin
                     example: 376
-                  template:
+                  blob:
                     type: string
                     description: The hexadecimal (blob) representation of the block template
                     example: 0400728d06eb4625c9e01e38fa87f811edd77c67d80ca38489d7c27f31d3847c9a0e0000bfa6e8e105000000000000000000000000000000000000000000000000000000000000000000000000010000000023032100000000000000000000000000000000000000000000000000000000000000000001b9e14501ff91e145060802d6b857e662cc8338a2a7e06a79e4a8769f6d856fbf48165bd7c29ca2a843bb3b500260e76024a6c203bdde045eced089c3e0fcc902de0cdb485fd843224800db3687f4030276e8d5d2e85e1ece9bbe8f88ef58ea9f94debab42f0b55955abd2987c1bf3bbb80f1040292389822fc43ac0229c99f2fe9a0fbe13c77b57fd668dd8d9aa3db9abcf4d5f380ea30020b60d2efc8e00380b3533ea5b6e42a1c7253524b8892e40355fb60d4be6d45db80897a02c424ab20e84649acf3aea1e0415c67c8b93fbee04b82adf544a1a566b536818f29014e3481ff088c19c46394e3580d3add88974adcbe9aa6d5a39e1b9ff1e1b541ca020600000000000002652b22710fafc9ebd4abb37eaffb7d43b019f563166d6912f33eb584b51c4284eca996fe0020b65bc983cdfd06c997231f14a03a8c4028a03608a234f4f573d5
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        503:
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction:
     post:
@@ -393,29 +472,42 @@ paths:
               description: The hexadecimal (blob) representation of the transaction to send to the network
               example: 010001026404d48008fff717d2872294b71e51b8304ed711c0fe240a2614610cc0380a5d0b8b13e2652e6c062fbb056b7f1f015a027b2288942d52247932af36dc1d722da61f296089015b83d591f5a71afafa948021015af0c037fcfe8c50f1e11876c98338fe664c85bc11cd696bc04c988b5669deda96a4299dd9cb471795d079da82e25827badcd79400b394e7c51b67c662d0fc03204a3967aa2bc90708c97cc0370597ad9e154dc7d418ab71b981f8bb805cc603bde2fcb1025bb8b7a04e5e5168cebd724c920fcbb3399210543db9cf7ef9440fa0f11f5a2ea908da1f60f359ab2af2f79783b2111362260fc8d562b268dd350dcb07941d179f34cfd43a3b8d689db6ff453fce4e987a537a528a80f011217e0460434e52da411e8760b10c34a3b63236eb966273a26a3ad3fc7a863a3b6bc508b16cc7763b28743f4ba5a9711e95eeb95762aa6e9c79725170d42fc8968dcd051d2eef49e1726db2fd92e76c47455efff52fc0b473899acaff169316f9654802
       responses:
-        '500':
-          description: Internal server error
-        '201':
+        '202':
           description: Transaction accepted and relayed to the network
-        '400':
-          description: Transaction rejected
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Transaction contains an input which has already been spent
-                  errorCode:
-                    type: integer
-                    description: The error code if available
-                    example: 104
+                type: string
+                description: The hash of the transaction submitted
+                example: dc07d5113f5844acf9b5bec546a5bd3954358b4f7ee1118a00986c40ed3d7b88
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        503:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction/{hash}:
     get:
-      summary: Retrieves inforamtion regarding the transaction specified
+      summary: Retrieves information regarding the transaction specified
       parameters:
         - name: hash
           description: The hash of the transaction to retrieve
@@ -426,10 +518,6 @@ paths:
       tags:
         - Transactions
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Transaction not found
         200:
           description: OK
           content:
@@ -439,47 +527,34 @@ paths:
                 properties:
                   block:
                     $ref: '#/components/schemas/Block.Summary'
-                  detail:
+                  pefix:
                     $ref: '#/components/schemas/Transaction'
-                  hash:
-                    type: string
-                    description: The hash of the transaction
-                    example: 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
                   meta:
                     $ref: '#/components/schemas/Transaction.Meta'
-
-  /transaction/{hash}/indexes:
-    get:
-      summary: Retrieves the global output indexes of the given transaction
-      parameters:
-        - name: hash
-          description: The hash of the transaction to retrieve
-          in: path
-          required: true
-          schema:
-            type: string
-      tags:
-        - Transactions
-      responses:
-        500:
-          description: Internal server error
-        404:
-          description: Transaction not found
-        200:
-          description: OK
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: integer
-                  description: The output indexes of the transaction
-                example:
-                  - 893753
-                  - 3283
-                  - 83496
-                  - 234
-
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction/{hash}/raw:
     get:
@@ -494,16 +569,38 @@ paths:
       tags:
         - Transactions
       responses:
-        500:
-          description: Internal server error
-        404:
-          description: Transaction not found
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transaction.Raw'
+                type: string
+                description: The hexadecimal representation of the raw transaction
+                example: 01f682a20101ffce82a201060102af3b0f3162610cd928327799204a33aac198292202c313441dc0ebe396934a3ebc05023717f8e9e2c004a33201759251ef86a9c6344f811ec07333d69e3dbca7af3d5ba84602d0c80aae15a1c505e5259cda34b4d46627757b4befafd0840a8167639501bcc2d0860302177349fb195139f874bc711b34872c2cdeb3fe715a2d770efa61086e07c5cddae0dc2a02c8f437c764194afcd1f78205db9bf37bab6f4086f082208509c33093be2fc0fe80897a020ed79afd4455430eb1a99d8f1f2f9ad919262a50c8e14eb9ace7ee78d9afd0a334018afe0c1674a11d21a3707954da7bf1f92c843365fd4ffa02b0f8706c3e6bc5850211000006fc99dd1524000000000000000000
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction/pool:
     get:
@@ -511,8 +608,6 @@ paths:
       tags:
         - Transactions
       responses:
-        500:
-          description: Internal server error
         200:
           description: OK
           content:
@@ -522,6 +617,18 @@ paths:
                 description: The summary of the transactions
                 items:
                   $ref: '#/components/schemas/Transaction.Summary'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction/pool/delta:
     post:
@@ -552,19 +659,6 @@ paths:
                     - bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0
                     - 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
       responses:
-        500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
         200:
           description: OK
           content:
@@ -576,24 +670,66 @@ paths:
                     type: array
                     description: Any array of transactions added to the memory pool
                     items:
-                      type: object
-                      properties:
-                        hash:
-                          type: string
-                          description: The transaction hash
-                        detail:
-                          $ref: '#/components/schemas/Transaction'
+                      type: string
+                      description: The hexadecimal representation of the raw transaction
+                    example:
+                      - 01f682a20101ffce82a201060102af3b0f3162610cd928327799204a33aac198292202c313441dc0ebe396934a3ebc05023717f8e9e2c004a33201759251ef86a9c6344f811ec07333d69e3dbca7af3d5ba84602d0c80aae15a1c505e5259cda34b4d46627757b4befafd0840a8167639501bcc2d0860302177349fb195139f874bc711b34872c2cdeb3fe715a2d770efa61086e07c5cddae0dc2a02c8f437c764194afcd1f78205db9bf37bab6f4086f082208509c33093be2fc0fe80897a020ed79afd4455430eb1a99d8f1f2f9ad919262a50c8e14eb9ace7ee78d9afd0a334018afe0c1674a11d21a3707954da7bf1f92c843365fd4ffa02b0f8706c3e6bc5850211000006fc99dd1524000000000000000000
                   deleted:
                     type: array
                     description: An array of transactions deleted from the memory pool
                     items:
                       type: string
                       description: The transaction hash
+                    example:
+                      - bb6478be6df0a6e94621b76ea653357cfe62a437df3684193e95003e4ed810a0
+                      - 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
                   synced:
                     type: boolean
                     description: Is the lastKnownBlock hash supplied currently the top block in the blockchain
                     example: true
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
+  /transaction/pool/raw:
+    get:
+      summary: Retrieves summary information of the node's copy of the transaction memory pool
+      tags:
+        - Transactions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Any array of transactions in the memory pool
+                items:
+                  type: string
+                  description: The hexadecimal representation of the raw transaction
+                example:
+                  - 01f682a20101ffce82a201060102af3b0f3162610cd928327799204a33aac198292202c313441dc0ebe396934a3ebc05023717f8e9e2c004a33201759251ef86a9c6344f811ec07333d69e3dbca7af3d5ba84602d0c80aae15a1c505e5259cda34b4d46627757b4befafd0840a8167639501bcc2d0860302177349fb195139f874bc711b34872c2cdeb3fe715a2d770efa61086e07c5cddae0dc2a02c8f437c764194afcd1f78205db9bf37bab6f4086f082208509c33093be2fc0fe80897a020ed79afd4455430eb1a99d8f1f2f9ad919262a50c8e14eb9ace7ee78d9afd0a334018afe0c1674a11d21a3707954da7bf1f92c843365fd4ffa02b0f8706c3e6bc5850211000006fc99dd1524000000000000000000
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /transaction/status:
     post:
@@ -615,19 +751,6 @@ paths:
                 - 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
                 - 32ddb2488c71c404122bca081daa39e7ac88456c9e3a88f8df6c0e4ca21099c3
       responses:
-        500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
         200:
           description: OK
           content:
@@ -659,6 +782,18 @@ paths:
                       description: The transaction hash
                     example:
                       - 32ddb2488c71c404122bca081daa39e7ac88456c9e3a88f8df6c0e4ca21099c3
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /indexes/random:
     post:
@@ -691,19 +826,6 @@ paths:
                   example: 3
 
       responses:
-        500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
         200:
           description: OK
           content:
@@ -731,6 +853,18 @@ paths:
                             type: string
                             description: The output key
                             example: a88f6bc8deb39414e00ed04d9bcdd0dc1f22a3673d222b482634c0e607ffd4fb
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /indexes/{start}/{end}:
     get:
@@ -751,8 +885,6 @@ paths:
       tags:
         - Syncronization
       responses:
-        500:
-          description: Internal server error
         200:
           description: OK
           content:
@@ -762,6 +894,10 @@ paths:
                 items:
                   type: object
                   properties:
+                    hash:
+                      type: string
+                      description: The transaction hash
+                      example: 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
                     indexes:
                       type: array
                       description: An array of output indexes
@@ -772,10 +908,24 @@ paths:
                         - 82348
                         - 3243
                         - 93434
-                    key:
-                      type: string
-                      description: The transaction hash
-                      example: 4d605ad5dd9df6a85fd64e37fa2b621f0c92b94ce417c92befde3018284a2e2b
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        416:
+          description: Requested Range Not Satisfiable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
   /sync:
     post:
@@ -790,19 +940,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Sync.Request'
       responses:
-        500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
         200:
           description: OK
           content:
@@ -813,7 +950,7 @@ paths:
                   - items
                   - synced
                 properties:
-                  items:
+                  blocks:
                     type: array
                     items:
                       $ref: '#/components/schemas/Sync.Block'
@@ -832,63 +969,18 @@ paths:
                         type: integer
                         description: The top block height of the blockchain
                         example: 2482868
-
-
-  /sync/detail:
-    post:
-      summary: Retrieves up to 100 detailed blocks for syncing
-      description: Retrieves up to 100 detailed blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.
-      tags:
-        - Syncronization
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Sync.Request'
-      responses:
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
         500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
+          description: Internal Server Error
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - items
-                  - synced
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Block.Detailed'
-                  synced:
-                    type: boolean
-                    description: Whether, given the supplied parameters, the node believes that the requestor is currently syncronized
-                    example: false
-                  topBlock:
-                    type: object
-                    properties:
-                      hash:
-                        type: string
-                        description: The top block hash of the blockchain
-                        example: 6f830c50450d01732926e571998fbb849800b8d7ec0f6a8fbacca07d4dff3648
-                      height:
-                        type: integer
-                        description: The top block height of the blockchain
-                        example: 2482868
+                $ref: '#/components/schemas/GenericError'
 
   /sync/raw:
     post:
@@ -903,19 +995,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Sync.Request'
       responses:
-        500:
-          description: Internal server error
-        '400':
-          description: Malformed Client Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: An informative error message is available
-                    example: Could not parse request
         200:
           description: OK
           content:
@@ -926,7 +1005,7 @@ paths:
                   - items
                   - synced
                 properties:
-                  items:
+                  blocks:
                     type: array
                     items:
                       $ref: '#/components/schemas/Block.Raw'
@@ -945,8 +1024,18 @@ paths:
                         type: integer
                         description: The top block height of the blockchain
                         example: 2482868
-
-
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
 
 components:
   schemas:
@@ -964,10 +1053,6 @@ components:
           type: integer
           description: The miner reward of the block excluding any penalties or fees
           example: 2881614
-        blockSize:
-          type: integer
-          description: The size of the block in bytes
-          example: 8359
         depth:
           type: integer
           description: The depth of the block in the blockchain (ie. confirmations)
@@ -975,8 +1060,6 @@ components:
         difficulty:
           type: integer
           example: 3668838478
-        effectiveSizeMedian:
-          type: integer
         hash:
           type: string
           description: The hash of the block
@@ -1012,6 +1095,10 @@ components:
           type: integer
           description: The total miner reward for this block
           example: 2881824
+        size:
+          type: integer
+          description: The size of the block in bytes
+          example: 8359
         sizeMedian:
           type: integer
           description: The median size of the last blocks
@@ -1024,6 +1111,10 @@ components:
           type: integer
           description: The total amount of fees included in this block
           example: 210
+        transactionCount:
+          type: integer
+          description: The number of transactions in the block
+          example: 4
         transactions:
           type: array
           description: The transactions contained in the block
@@ -1034,7 +1125,7 @@ components:
           description: The total size of the transactions included in this block in bytes
           example: 8144
 
-    Block.Detailed:
+    Block.Summary:
       properties:
         alreadyGeneratedCoins:
           type: integer
@@ -1048,89 +1139,12 @@ components:
           type: integer
           description: The miner reward of the block excluding any penalties or fees
           example: 2881614
-        blockSize:
-          type: integer
-          description: The size of the block in bytes
-          example: 8359
         depth:
           type: integer
           description: The depth of the block in the blockchain (ie. confirmations)
           example: 12
         difficulty:
           type: integer
-          description: The difficulty of the block
-          example: 3668838478
-        hash:
-          type: string
-          description: The hash of the block
-          example: b226a29c8ea906d89ecda798993888307e2f9da86eb3787a63c9adb388c47bc1
-        index:
-          type: integer
-          description: The 0-based index of the block
-          example: 1129696
-        majorVersion:
-          type: integer
-          description: The major version of the block
-          example: 4
-        minorVersion:
-          type: integer
-          description: The minor version of the block
-          example: 0
-        nonce:
-          type: integer
-          description: The nonce of the block
-          example: 1412340624
-        prevHash:
-          type: string
-          description: The hash of the previous block in the blockchain
-          example: b5b53a17371e3681f1ded1ddd20339f8c95f54e7774c4fb759db3367c5e75a2d
-        reward:
-          type: integer
-          description: The total miner reward for this block
-          example: 2881824
-        sizeMedian:
-          type: integer
-          description: The median size of the last blocks
-          example: 309
-        timestamp:
-          type: integer
-          description: The timestamp of this block
-          example: 1546912440
-        totalFeeAmount:
-          type: integer
-          description: The total amount of fees included in this block
-          example: 210
-        transactions:
-          type: array
-          description: The transactions contained in the block
-          items:
-            $ref: '#/components/schemas/Transaction.Detailed'
-        transactionsCumulativeSize:
-          type: integer
-          description: The total size of the transactions included in this block in bytes
-          example: 8144
-
-    Block.Header:
-      properties:
-        alreadyGeneratedCoins:
-          type: integer
-          description: The number of already generated coins in the blockchain as of this block
-          example: 3309050796227
-        alreadyGeneratedTransactions:
-          type: integer
-          description: The number of already generated transactions in the blockchain as of this block
-          example: 2728607
-        baseReward:
-          type: integer
-          description: The base miner reward of the block
-          example: 2881614
-        depth:
-          type: integer
-          description: The depth of the block in the blockchain (ie. confirmations)
-          example: 12
-        difficulty:
-          type: integer
-          description: The difficulty of the block
           example: 3668838478
         hash:
           type: string
@@ -1152,13 +1166,20 @@ components:
           type: integer
           description: The nonce of the block
           example: 1412340624
+        orphan:
+          type: boolean
+          description: Whether the block is an orphan or not -- if orphaned, it is not in the main chain
+          example: false
+        penalty:
+          type: integer
+          example: 0
         prevHash:
           type: string
           description: The hash of the previous block in the blockchain
           example: b5b53a17371e3681f1ded1ddd20339f8c95f54e7774c4fb759db3367c5e75a2d
         reward:
           type: integer
-          description: The miner reward issued for this block including any penalties or fees
+          description: The total miner reward for this block
           example: 2881824
         size:
           type: integer
@@ -1170,15 +1191,15 @@ components:
           example: 309
         timestamp:
           type: integer
-          description: The timestamp of the block
+          description: The timestamp of this block
           example: 1546912440
         totalFeeAmount:
           type: integer
-          description: The total amount of fees contained in this block
+          description: The total amount of fees included in this block
           example: 210
         transactionCount:
           type: integer
-          description: The number of transactions contained in the block
+          description: The number of transactions in the block
           example: 4
         transactionsCumulativeSize:
           type: integer
@@ -1200,37 +1221,6 @@ components:
           description: The transactions contained in the block
           items:
             $ref: '#/components/schemas/Transaction.Raw'
-
-    Block.Summary:
-      properties:
-        difficulty:
-          type: integer
-          description: The difficulty of the block
-          example: 664181705
-        hash:
-          type: string
-          description: The hash of the block
-          example: cec44b86eec8e26cfbe1b78fa50c893ffef90fe4c7b0d6f0b17d6c290f98cce7
-        height:
-          type: integer
-          description: The height of the block
-          example: 1000000
-        nonce:
-          type: integer
-          description: The nonce of the block
-          example: 3422693826
-        size:
-          type: integer
-          description: The size of the block in bytes
-          example: 12489
-        timestamp:
-          type: integer
-          description: The timestamp of the block
-          example: 1543009724
-        tx_count:
-          type: integer
-          description: The number of transactions included in the block
-          example: 2
 
     Fee:
       properties:
@@ -1259,31 +1249,31 @@ components:
         alternateBlockCount:
           type: number
           description: The number of alternate (candidate) blocks currently in the node's local cache
-          example: 146
+          example: 0
         difficulty:
           type: number
           description: The current block difficulty
-          example: 13530119534
-        gregPeerlistSize:
+          example: 15269479667
+        greyPeerlistSize:
           type: number
           description: The number of peers that the node has had issues with
-          example: 2222
+          example: 2623
         hashrate:
           type: number
           description: The current estimate hashrate of the entire network
-          example: 451003984
+          example: 508982655
         height:
           type: number
           description: The block height that the node has currently obtained
-          example: 2184547
+          example: 2652230
         incomingConnections:
           type: number
           description: The current number of inbound connections the node has established
-          example: 17
+          example: 4
         lastBlockIndex:
           type: number
           description: The last block index (0-based) committed to the local chain by the node
-          example: 2184545
+          example: 2652227
         majorVersion:
           type: number
           description: The current blockchain major version number
@@ -1295,19 +1285,19 @@ components:
         networkHeight:
           type: number
           description: The current observed blockchain height as reported by the nodes peers
-          example: 2184547
+          example: 2652230
         outgoingConnections:
           type: number
           description: The current number of outbound connections the node has established
-          example: 8
+          example: 6
         startTime:
           type: number
           description: The unix timestamp of when the node was started
-          example: 1578402690
+          example: 1592863363
         supportedHeight:
           type: number
           description: The current network height this node has support for
-          example: 2200000
+          example: 3000000
         synced:
           type: boolean
           description: Whether the node believes it is synced or not
@@ -1315,11 +1305,11 @@ components:
         transactionsPoolSize:
           type: number
           description: The number of transactions currently in the transaction pool
-          example: 4
+          example: 0
         transactionsSize:
           type: number
           description: The number of user-generated transactions currently in the blockchain
-          example: 3584242
+          example: 3991997
         upgradeHeights:
           type: array
           description: The upgrade heights currently recognized by this node
@@ -1344,6 +1334,16 @@ components:
               - 2600000
               - 2800000
               - 3000000
+              - 3200000
+              - 3400000
+              - 3600000
+              - 3800000
+              - 4000000
+              - 4200000
+              - 4400000
+              - 4600000
+              - 4800000
+              - 5000000
         version:
           type: string
           description: The current node version number (X.Y.Z)
@@ -1351,7 +1351,7 @@ components:
         whitePeerlistSize:
           type: number
           description: The number of candidate peers available for additional connections
-          example: 439
+          example: 814
 
     Peers:
       properties:
@@ -1374,7 +1374,7 @@ components:
 
     Sync.Block:
       properties:
-        blockHash:
+        hash:
           type: string
           description: The block hash
           example: cec44b86eec8e26cfbe1b78fa50c893ffef90fe4c7b0d6f0b17d6c290f98cce7
@@ -1386,6 +1386,34 @@ components:
           type: integer
           description: The timestamp of the block
           example: 1543009724
+        coinbaseTx:
+          type: object
+          properties:
+            hash:
+              type: string
+              description: The coinbase transaction
+              example: a9330876ab033adbc5a532f35681885fab11da15e7942ab1cc3f39703bdff883
+            outputs:
+              type: array
+              description: An array of the transaction outputs
+              items:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    example: 9
+                  key:
+                    type: string
+                    example: >-
+                      d1e663304b3cb396fe279631dc3d10f56a0333cc39840a4fbd9957eef58b52fb
+            publicKey:
+              type: string
+              description: The transaction public key
+              example:
+            unlockTime:
+              type: integer
+              description: The unlock time of the transaction
+              example: 1106538
         transactions:
           type: array
           description: An array of transactions in the block
@@ -1397,6 +1425,37 @@ components:
                 description: The hash of the transaction
                 example: >-
                   fdf5c761c116d1c291b691d1f696a19e4a422ac0970f41af1cd38cd8a64d75a7
+              inputs:
+                type: array
+                description: An array of the transaction inputs
+                items:
+                  type: object
+                  properties:
+                    amount:
+                      type: integer
+                      example: 1
+                    keyImage:
+                      type: string
+                      example: >-
+                        5f279712ba438978cf48521914880e21a6be990e644a2a5986dbeda0966c5891
+              outputs:
+                type: array
+                description: An array of the transaction outputs
+                items:
+                  type: object
+                  properties:
+                    amount:
+                      type: integer
+                      example: 9
+                    key:
+                      type: string
+                      example: >-
+                        d1e663304b3cb396fe279631dc3d10f56a0333cc39840a4fbd9957eef58b52fb
+              paymentId:
+                type: string
+                description: The payment ID of the transaction
+                example: >-
+                  487b9be44dbe529e626ce5287ed387638fe6b208f15ee72a9807ad65719a169d
               publicKey:
                 type: string
                 description: The public key of the transaction
@@ -1406,46 +1465,6 @@ components:
                 type: integer
                 description: The unlock time of the transaction
                 example: 1106538
-              paymentId:
-                type: string
-                description: The payment ID of the transaction
-                example: >-
-                  487b9be44dbe529e626ce5287ed387638fe6b208f15ee72a9807ad65719a169d
-              inputs:
-                type: array
-                description: An array of the transaction inputs
-                items:
-                  type: object
-                  properties:
-                    keyImage:
-                      type: string
-                      example: >-
-                        5f279712ba438978cf48521914880e21a6be990e644a2a5986dbeda0966c5891
-                    amount:
-                      type: integer
-                      example: 1
-                    type:
-                      type: string
-                      example: '02'
-              outputs:
-                type: array
-                description: An array of the transaction outputs
-                items:
-                  type: object
-                  properties:
-                    index:
-                      type: integer
-                      example: 0
-                    key:
-                      type: string
-                      example: >-
-                        d1e663304b3cb396fe279631dc3d10f56a0333cc39840a4fbd9957eef58b52fb
-                    amount:
-                      type: integer
-                      example: 9
-                    type:
-                      type: string
-                      example: '02'
 
     Sync.Request:
       properties:
@@ -1458,6 +1477,11 @@ components:
           example:
             - b8166ed940ac4c8c33cd077fb49bdca43e4243e6cc2b61b64f39193a4b13d4a6
             - 7fb97df81221dd1366051b2d0bc7f49c66c22ac4431d879c895b06d66ef66f4c
+        count:
+          type: number
+          description: The number of blocks to return
+          example: 100
+          default: 100
         height:
           type: integer
           description: The height to start returning blocks from
@@ -1497,72 +1521,7 @@ components:
           description: The transaction version number
           example: 1
 
-    Transaction.Detailed:
-      properties:
-        extra:
-          type: string
-          description: The hexadecimal (blob) representation of the data in TX_EXTRA
-          example: 01a93114cb9a8863c15611c3c0e84f66faca7fae5c445a04938e364a9aa7fbb243
-        fee:
-          type: integer
-          description: The transaction fee
-          example: 2000
-        hash:
-          type: string
-          description: The transaction hash
-          example: c21006e57ed32b54ad3a73bfc3d68faae3265f6dc916fa8ddcd67f3870fae49e
-        inputs:
-          type: array
-          items:
-            anyOf:
-              - $ref: '#/components/schemas/Transaction.Input.Coinbase'
-              - $ref: '#/components/schemas/Transaction.Input.Key'
-        outputs:
-          type: array
-          items:
-            anyOf:
-              - $ref: '#/components/schemas/Transaction.Output.Key'
-        paymentId:
-          type: string
-          description: The payment ID provided in the transaction
-          example: c085144ab554399546ed805b790beb6ee9035a86c74e272af70cd4f1897256ff
-        ringSize:
-          type: integer
-          description: The number of participant keys in the ring signatures
-          example: 4
-        signatures:
-          type: array
-          description: An array of signatures for the array of inputs
-          items:
-            type: array
-            description: The array of signatures for a single input
-            items:
-              type: string
-              description: The ring signature
-              example:
-                - "6fd58a9aa7f6129de5fe56e3bbe55d31e3fc23e7b533c4197affebcf9e27c108fbdfa698509d8ed4eff657c8fca3827ba589063d178e1f08aac3e0f96b7a2707"
-                - "dff8fdeded98ae0cb2ae34ce392605f193e140ab1451854f4092bc1b6169da02e4081cc5c2156b9f712c7d8ed2574a95a8058a101a221d9336476af26f1e8c0a"
-                - "4bfc3cc3407c116d18d3136a69c1a96a6ffb369c83623dd148d04c78805ba30b850194df327aa82f4c495549ec65d20732a075d9495ee9e58dda9c080338c90e"
-                - "57aaa125f7b85bd1899cac2c9f40a9b4ac36976ebc64254f07c768a10116cf01812c4749fd69fa4d54935a0a94b9d3a626b6ead66d3248f3810c0cb7c0c23a04"
-        signaturesSize:
-          type: integer
-          description: The size of the transaction signatures in bytes
-        size:
-          type: integer
-          description: The size of the transaction in bytes
-          example: 689
-        totalInputsAmount:
-          type: integer
-          description: The total amount of the transaction inputs
-          example: 700000
-        totalOutputsAmount:
-          type: integer
-          description: The total amount of the transaction outputs
-          example: 698000
-        unlockTime:
-          type: integer
-          description: The unlock time of the transaction
-          example: 0
+
 
     Transaction.Input.Coinbase:
       properties:
@@ -1615,6 +1574,10 @@ components:
           type: string
           description: The payment ID provided in the transaction
           example:   6bf60c221b49c4a6cdec704064b3cfd3202c214f613ed027ff9a267edd646790
+        publicKey:
+          type: string
+          description: The transaction public key
+          example: 8afe0c1674a11d21a3707954da7bf1f92c843365fd4ffa02b0f8706c3e6bc585
         ringSize:
           type: integer
           description: The number of participant keys in the ring signatures
@@ -1668,3 +1631,17 @@ components:
           type: integer
           description: The transaction size in bytes
           example: 511
+
+    GenericError:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: number
+              description: The error code
+              example: 64
+            message:
+              type: string
+              description: A descriptive error
+              example: An internal error occurred.
