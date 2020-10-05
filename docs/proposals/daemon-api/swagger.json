@@ -24,7 +24,7 @@
       "name": "Transactions"
     },
     {
-      "name": "Syncronization"
+      "name": "Synchronization"
     }
   ],
   "externalDocs": {
@@ -1249,7 +1249,7 @@
       "post": {
         "summary": "Retrieves random output indexes from the node",
         "tags": [
-          "Syncronization"
+          "Synchronization"
         ],
         "requestBody": {
           "required": true,
@@ -1372,7 +1372,7 @@
           }
         ],
         "tags": [
-          "Syncronization"
+          "Synchronization"
         ],
         "responses": {
           "200": {
@@ -1446,7 +1446,7 @@
         "summary": "Retrieves up to 100 standard blocks for wallet syncing",
         "description": "Retrieves up to 100 standard blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.",
         "tags": [
-          "Syncronization"
+          "Synchronization"
         ],
         "requestBody": {
           "required": true,
@@ -1529,7 +1529,7 @@
         "summary": "Retrieves up to 100 raw blocks for syncing",
         "description": "Retrieves up to 100 raw blocks. If block hash checkpoints are given, it will return beginning from the height of the first hash it finds, plus one. However, if startHeight or startTimestamp is given, and this value is  higher than the block hash checkpoints, it will start returning from that height instead. The block hash checkpoints should be given with the highest block height hashes first. Typical usage - specify a start height/timestamp initially, and from then on, also provide the returned  block hashes.",
         "tags": [
-          "Syncronization"
+          "Synchronization"
         ],
         "requestBody": {
           "required": true,
