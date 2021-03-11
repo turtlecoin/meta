@@ -2042,7 +2042,7 @@
             "description": "The timestamp of the block",
             "example": 1543009724
           },
-          "coinbaseTx": {
+          "coinbaseTX": {
             "type": "object",
             "properties": {
               "hash": {
